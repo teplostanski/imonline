@@ -33,23 +33,23 @@
   },
   "oclif": {
     "bin": "nch",
-    "commands": "./dist/commands",
+    "commands": {
+      "strategy": "single",
+      "target": "./dist/commands/index.js"
+    },
     "dirname": "nch",
     "plugins": [
       "@oclif/plugin-help",
       "@oclif/plugin-plugins"
-    ],
-    "topicSeparator": " ",
-    "topics": {
-      "hello": {
-        "description": "Say hello to the world and others"
-      }
-    }
+    ]
   },
   "dependencies": {
     "@oclif/core": "^3",
     "@oclif/plugin-help": "^6",
-    "@oclif/plugin-plugins": "^5"
+    "@oclif/plugin-plugins": "^5",
+    "ink": "^4.4.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@oclif/prettier-config": "^0.2.1",
@@ -57,6 +57,7 @@
     "@types/chai": "^4",
     "@types/mocha": "^10",
     "@types/node": "^18",
+    "@types/react": "^18.2.77",
     "chai": "^4",
     "eslint": "^8",
     "eslint-config-oclif": "^5",

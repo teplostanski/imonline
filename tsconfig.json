@@ -1,14 +1,19 @@
 {
   "compilerOptions": {
+    "jsx": "react",
     "declaration": true,
     "module": "Node16",
     "outDir": "dist",
     "rootDir": "src",
     "strict": true,
     "target": "es2022",
-    "moduleResolution": "node16"
+    "lib": ["es2018", "dom"],
+    "moduleResolution": "Node16",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true
   },
-  "include": ["./src/**/*"],
+  "include": ["global.d.ts", "./src/**/*"],
   "ts-node": {
     "esm": true
   }
