@@ -1,4 +1,5 @@
-import {Text} from 'ink'
 import React from 'react'
 
-export const App = () => <Text>Im nch</Text>
+import { FetchExternalIP } from '../features/fetch-ip.js'
+
+export const App = () => <FetchExternalIP />
