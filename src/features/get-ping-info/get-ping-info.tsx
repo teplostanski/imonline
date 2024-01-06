@@ -8,7 +8,7 @@ import {getColor} from './get-ping-info.utils.js'
 
 export const GetPingInfo = () => {
   const [pingInfo, setPingInfo] = useState({icmpSeq: '', time: ''})
-  const [error, setError] = useState('') // Состояние для хранения возможной ошибки
+  const [error, setError] = useState('')
 
   useEffect(() => {
     const pingProcess = spawn('ping', ['ya.ru'])
@@ -23,7 +23,7 @@ export const GetPingInfo = () => {
         const newIcmpSeq = icmpSeqMatch[1]
 
         setPingInfo((prev) => ({
-          ...prev, // Копируем предыдущие значения maxTime и minTime
+          ...prev,
           icmpSeq: newIcmpSeq,
           time: newTime,
         }))
