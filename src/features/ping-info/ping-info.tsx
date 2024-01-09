@@ -4,7 +4,7 @@ import Spinner from 'ink-spinner'
 import {spawn} from 'node:child_process'
 import React, {useEffect, useState} from 'react'
 
-import {getColor} from './get-ping-info.utils.js'
+import {getColor} from './ping-info.utils.js'
 
 export const GetPingInfo = () => {
   const [pingInfo, setPingInfo] = useState({icmpSeq: '', time: ''})
