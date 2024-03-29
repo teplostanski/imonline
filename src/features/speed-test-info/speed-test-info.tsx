@@ -5,7 +5,7 @@ import {spawn} from 'node:child_process'
 import React, {useEffect, useState} from 'react'
 
 import {CheckIperfInstalled, IperfResult} from './speed-test-info.types.js'
-import { checkIperfInstalled, formatDuration } from './speed-test-info.utils.js'
+import {checkIperfInstalled, formatDuration} from './speed-test-info.utils.js'
 
 export const SpeedTest = () => {
   const [iperfInstalled, setIperfInstalled] = useState(false)
@@ -18,14 +18,10 @@ export const SpeedTest = () => {
   const [rawDuration, setRawDuration] = useState(0)
   const [showHints, setShowHints] = useState(false)
 
-  // Функция для преобразования миллисекунд в выбранный формат времени
-
   useEffect(() => {
-    // Обновляет продолжительность теста при изменении формата времени
     setTestDuration(formatDuration(rawDuration, timeFormat))
   }, [rawDuration, timeFormat])
 
-  // Переключение единиц измерения и перезапуск теста по нажатию клавиш
   useInput((input) => {
     if (input === '?') {
       setShowHints(!showHints)
@@ -36,14 +32,12 @@ export const SpeedTest = () => {
     }
 
     if (
-      (input === 'r' || input === 'к') && // Добавляем обработку для клавиши 'r'
-      // setTestTrigger((prev) => !prev)
+      (input === 'r' || input === 'к') && //
       !isTesting
     ) {
-      runTest() //
+      runTest()
     }
 
-    // runTest()// Переключаем состояние для перезапуска теста
     if (input === 't') {
       setTimeFormat((currentFormat) => {
         const newFormat = currentFormat === 's' ? 'ms' : 's'

@@ -1,13 +1,13 @@
-import chalk from 'chalk'
 import {Box} from 'ink'
 import Spinner from 'ink-spinner'
 import {spawn} from 'node:child_process'
-import React, {useEffect, useState} from 'react'
+import React, {FC, useEffect, useState} from 'react'
 
+import {PingInfoProps} from './ping-info.types.js'
 import {getColor} from './ping-info.utils.js'
 
-export const GetPingInfo = () => {
-  const [pingInfo, setPingInfo] = useState({icmpSeq: '', time: ''})
+export const PingInfo: FC<PingInfoProps> = ({onError}) => {
+  const [pingInfo, setPingInfo] = useState({icmpSeq: '', maxTime: '', minTime: '', time: ''})
   const [error, setError] = useState('')
 
   useEffect(() => {
@@ -33,12 +33,14 @@ export const GetPingInfo = () => {
     pingProcess.on('error', (err) => {
       const errorMessage = `Ошибка выполнения ping: ${err.message}`
       setError(errorMessage)
+      onError(errorMessage)
     })
 
     pingProcess.on('close', (code) => {
       if (code !== 0) {
         const errorMessage = `Ping завершился с ошибкой\nПроверьте подключение к интернету\nИли смените хост в настройках`
         setError(errorMessage)
+        onError(errorMessage)
       }
     })
 
@@ -47,8 +49,21 @@ export const GetPingInfo = () => {
     }
   }, [])
 
+  useEffect(() => {
+    const current = Number.parseFloat(pingInfo.time)
+    const max = Number.parseFloat(pingInfo.maxTime)
+    const min = Number.parseFloat(pingInfo.minTime)
+    if (!pingInfo.time) return
+
+    setPingInfo((prev) => ({
+      ...prev,
+      maxTime: !prev.maxTime || current > max ? pingInfo.time : prev.maxTime,
+      minTime: !prev.minTime || current < min ? pingInfo.time : prev.minTime,
+    }))
+  }, [pingInfo.time])
+
   if (error) {
-    return <Text>{chalk.red(error)}</Text>
+    return <Text color="red">{error}</Text>
   }
 
   return (
@@ -69,6 +84,12 @@ export const GetPingInfo = () => {
           </Text>
         )}
       </Box>
+      {pingInfo.time && (
+        <Box>
+          <Text>Мин.: {getColor(pingInfo.minTime)}, </Text>
+          <Text>Макс.: {getColor(pingInfo.maxTime)}</Text>
+        </Box>
+      )}
     </Box>
   )
 }
