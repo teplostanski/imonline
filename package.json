@@ -1,9 +1,24 @@
 {
   "name": "nch",
   "version": "0.0.0",
-  "description": "Network checker",
+  "description": "Network Checker is a user-friendly CLI (TUI) application that offers real-time IP discovery, ping statistics, and speed testing to optimize your network performance.",
   "keywords": [
-    "oclif"
+    "network",
+    "tools",
+    "cli",
+    "tui",
+    "ip address",
+    "ping",
+    "speed",
+    "test",
+    "network-performance",
+    "internet-speed",
+    "command-line",
+    "real-time-network",
+    "network-monitoring",
+    "network-optimization",
+    "network-checker",
+    "tech-tools"
   ],
   "homepage": "https://github.com/teplostanski/nch",
   "bugs": "https://github.com/teplostanski/nch/issues",

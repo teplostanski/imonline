@@ -1,5 +1,5 @@
 import chalk from 'chalk'
-import {Box, useInput} from 'ink'
+import {Box, Text, useInput} from 'ink'
 import Spinner from 'ink-spinner'
 import {spawn} from 'node:child_process'
 import React, {useEffect, useState} from 'react'

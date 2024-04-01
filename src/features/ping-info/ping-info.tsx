@@ -1,4 +1,4 @@
-import {Box} from 'ink'
+import {Box, Text} from 'ink'
 import Spinner from 'ink-spinner'
 import {spawn} from 'node:child_process'
 import React, {FC, useEffect, useState} from 'react'
