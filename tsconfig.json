@@ -2,16 +2,17 @@
   "compilerOptions": {
     "jsx": "react",
     "declaration": true,
-    "module": "Node16",
     "outDir": "dist",
     "rootDir": "src",
     "strict": true,
-    "target": "es2022",
+    "target": "ESNext",
+    "module": "NodeNext",
     "lib": ["es2018", "dom"],
     "moduleResolution": "Node16",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "resolveJsonModule": true
   },
   "include": ["global.d.ts", "./src/**/*"],
   "ts-node": {

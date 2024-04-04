@@ -1,11 +1,10 @@
-import {Command} from '@oclif/core'
 import {render} from 'ink'
 import React from 'react'
 
 import {App} from '../components/app.js'
+import {Init} from '../init.js'
 
-export default class Main extends Command {
-  static description = "Network Checker is a user-friendly CLI (TUI) application that offers real-time IP discovery, ping statistics, and speed testing to optimize your network performance."
+export default class Main extends Init {
   async run() {
     render(<App />)
   }
