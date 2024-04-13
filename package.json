@@ -1,6 +1,6 @@
 {
-  "name": "nch",
-  "version": "0.0.0",
+  "name": "nche",
+  "version": "1.0.0-alpha.0",
   "description": "Network Checker is a user-friendly CLI (TUI) application that offers real-time IP discovery, ping statistics, and speed testing to optimize your network performance.",
   "keywords": [
     "network",
@@ -20,16 +20,16 @@
     "network-checker",
     "tech-tools"
   ],
-  "homepage": "https://github.com/teplostanski/nch",
-  "bugs": "https://github.com/teplostanski/nch/issues",
-  "repository": "teplostanski/nch",
+  "homepage": "https://github.com/teplostanski/nche",
+  "bugs": "https://github.com/teplostanski/nche/issues",
+  "repository": "teplostanski/nche",
   "license": "GPL-3.0-only",
   "author": "teplostanski",
   "type": "module",
   "exports": "./lib/index.js",
   "types": "dist/index.d.ts",
   "bin": {
-    "nch": "./bin/run.js"
+    "nche": "./bin/run.js"
   },
   "files": [
     "/bin",
@@ -47,12 +47,12 @@
     "version": "oclif readme && git add README.md"
   },
   "oclif": {
-    "bin": "nch",
+    "bin": "nche",
     "commands": {
       "strategy": "single",
       "target": "./dist/commands/index.js"
     },
-    "dirname": "nch",
+    "dirname": "nche",
     "plugins": [
       "@oclif/plugin-help",
       "@oclif/plugin-plugins"
