@@ -1,6 +1,6 @@
-import { spawn } from "node:child_process"
+import {spawn} from 'node:child_process'
 
-import { CheckIperfInstalled, TimeFormat } from "./speed-test-info.types.js"
+import {CheckIperfInstalled, TimeFormat} from './speed-test-info.types.js'
 
 export const checkIperfInstalled = (): Promise<CheckIperfInstalled> =>
   new Promise((resolve) => {

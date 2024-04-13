@@ -1,10 +1,12 @@
 import {Box, Text, useInput} from 'ink'
 import React, {ComponentType, FC} from 'react'
 
-const withExit = <P extends object>(WrappedComponent: ComponentType<P>, onExit: () => void): FC<P> => (props: P) => {
+const withExit =
+  <P extends object>(WrappedComponent: ComponentType<P>, onExit: () => void): FC<P> =>
+  (props: P) => {
     useInput((input) => {
       if (input === 'q' || input === 'й') {
-        onExit();
+        onExit()
       }
     })
 
@@ -18,4 +20,4 @@ const withExit = <P extends object>(WrappedComponent: ComponentType<P>, onExit: 
     )
   }
 
-export default withExit;
+export default withExit

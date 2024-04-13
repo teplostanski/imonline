@@ -38,10 +38,10 @@
   ],
   "scripts": {
     "build": "shx rm -rf dist && tsc -b",
-    "lint": "eslint . --ext .ts",
+    "lint": "eslint . --ext .ts --fix",
     "prepack": "npm run build && oclif manifest && oclif readme",
     "postpack": "shx rm -f oclif.manifest.json",
-    "prepare": "npm run build",
+    "prepare": "husky",
     "test": "mocha --forbid-only \"test/**/*.test.ts\"",
     "posttest": "npm run lint",
     "version": "oclif readme && git add README.md"
@@ -74,18 +74,21 @@
     "@oclif/test": "^3",
     "@types/chai": "^4",
     "@types/mocha": "^10",
-    "@types/node": "^18",
+    "@types/node": "^20.12.7",
     "@types/react": "^18.2.77",
+    "@typescript-eslint/eslint-plugin": "^7.6.0",
+    "@typescript-eslint/parser": "^7.6.0",
     "chai": "^4",
     "eslint": "^8",
     "eslint-config-oclif": "^5",
     "eslint-config-oclif-typescript": "^3",
     "eslint-config-prettier": "^9.1.0",
+    "husky": "^9.0.11",
     "mocha": "^10",
-    "oclif": "^4.7.6",
+    "oclif": "^4.7.3",
     "shx": "^0.3.4",
     "ts-node": "^10.9.2",
-    "typescript": "^5"
+    "typescript": "5.3.3"
   },
   "engines": {
     "node": ">=18.0.0"
