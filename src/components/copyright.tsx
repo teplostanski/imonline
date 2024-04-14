@@ -5,15 +5,7 @@ import {useStore} from '../store.js'
 import {colorText} from '../utils/color-text.js'
 import {color} from '../utils/get-color.js'
 import {loadPackageJson} from '../utils/load-package-json.js'
-
-function yearComparison(initYear: number) {
-  const currentYear = new Date().getFullYear()
-  if (initYear === currentYear) {
-    return currentYear.toString()
-  }
-
-  return `${initYear}-${currentYear}`
-}
+import {yearComparison} from '../utils/year-comparison.js'
 
 export const Copyright = () => {
   const {noColor} = useStore()
