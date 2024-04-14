@@ -34,7 +34,8 @@
   "files": [
     "/bin",
     "/dist",
-    "/oclif.manifest.json"
+    "/oclif.manifest.json",
+    "/LICENSE.md"
   ],
   "scripts": {
     "build": "shx rm -rf dist && tsc -b",
