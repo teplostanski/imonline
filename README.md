@@ -2,7 +2,7 @@
 
 > Network Checker is a user-friendly CLI (TUI) application that offers real-time IP discovery, ping statistics, and speed testing to optimize your network performance.
 
-<img src="./preview.gif" alt="preview" width="700"/>
+<img src="./preview.gif" alt="preview" width="460"/>
 
 
 ## Install
