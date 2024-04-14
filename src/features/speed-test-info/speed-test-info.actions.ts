@@ -33,6 +33,12 @@ export const runIperf = (): Promise<RunIperfResult> =>
         if (json.error) {
           if (json.error.includes('the server is busy running a test. try again later')) {
             error = 'iperf уже обрабатывает подобный запрос, попробуйте позже'
+            
+            // │ unable to receive control      │
+            // │ message - port may not be      │
+            // │ available, the other side may  │
+            // │ have stopped running, etc.:    │
+            // │ Connection reset by peer  
           } else {
             error = json.error
           }
