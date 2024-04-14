@@ -1,28 +1,10 @@
 import {Box, Newline, Text, useInput} from 'ink'
 import Spinner from 'ink-spinner'
-import {spawn} from 'node:child_process'
 import React, {useEffect, useState} from 'react'
 
-import {runIperf} from './speed-test-info.actions.js'
+import {checkIperfInstalled, runIperf} from './speed-test-info.actions.js'
 import {CheckIperfInstalled, IperfResult, RunIperfResult} from './speed-test-info.types.js'
 import {formatDuration} from './speed-test-info.utils.js'
-
-export const checkIperfInstalled = (): Promise<CheckIperfInstalled> =>
-  new Promise((resolve) => {
-    const checkIperf = spawn('iperf3', ['--version'])
-
-    checkIperf.on('error', () => {
-      resolve({installed: false, message: 'iperf3 не установлен. Пожалуйста, установите iperf3 для продолжения теста.'})
-    })
-
-    checkIperf.on('exit', (code) => {
-      if (code === 0) {
-        resolve({installed: true, message: ''})
-      } else {
-        resolve({installed: false, message: 'iperf3 не найден.'})
-      }
-    })
-  })
 
 export const SpeedTest = () => {
   const [iperfInstalled, setIperfInstalled] = useState(false)
@@ -98,8 +80,6 @@ export const SpeedTest = () => {
         setError('Ошибка при разборе результатов теста.')
       }
     } else {
-      console.log(result.error)
-
       setError(result.error || 'Ошибка: Никогда такого небыло и вот опять.')
     }
   }

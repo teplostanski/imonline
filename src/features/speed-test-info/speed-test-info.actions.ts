@@ -33,6 +33,7 @@ export const runIperf = (): Promise<RunIperfResult> =>
         if (json.error) {
           if (json.error.includes('the server is busy running a test. try again later')) {
             error = 'iperf уже обрабатывает подобный запрос, попробуйте позже'
+            process.kill()
             
             // │ unable to receive control      │
             // │ message - port may not be      │
@@ -44,6 +45,7 @@ export const runIperf = (): Promise<RunIperfResult> =>
           }
         } else {
           output += message
+          process.kill();
         }
       } catch (parseError) {
         console.log('Received non-JSON output or JSON parsing error:', parseError)
@@ -55,12 +57,16 @@ export const runIperf = (): Promise<RunIperfResult> =>
       if (code === 0 && !error) {
         resolve({output, success: true})
       } else {
-        resolve({error: error || 'Error executing command.', success: false})
+        if (!error) error = 'Error executing command.';
+        console.log(`Process exited with code ${code} and error ${error}`);
+        process.kill(); // Убедимся, что процесс завершен
+        resolve({error, success: false});
       }
     })
 
     process.on('error', (err) => {
-      console.log(`Process error: ${err.message}`)
-      resolve({error: err.message, success: false})
-    })
+      console.log(`Process error: ${err.message}`);
+      process.kill(); // Убиваем процесс при любой ошибке
+      resolve({error: err.message, success: false});
+    });
   })

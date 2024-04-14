@@ -7,6 +7,9 @@ import {Init} from '../init.js'
 
 export default class Main extends Init {
   static flags = {
+    nocolor: Flags.boolean({
+      summary: 'Disable colored output',
+    }),
     version: Flags.boolean({
       char: 'v',
       summary: 'Print version',
@@ -14,9 +17,20 @@ export default class Main extends Init {
   }
 
   async run() {
-    const {flags} = await this.parse(Main)
-    if (flags.version) this.log(this.version)
+    try {
+      const {flags} = await this.parse(Main)
 
-    if (!flags) render(<App />)
+      if (flags.version) {
+        this.log(this.version)
+      }
+
+      if (flags.nocolor) {
+        render(<App isNoColor={true} />)
+      } else {
+        render(<App />)
+      }
+    } catch (error) {
+      console.error('Error during command execution:', error)
+    }
   }
 }
