@@ -2,7 +2,7 @@ import {Flags} from '@oclif/core'
 import {render} from 'ink'
 import React from 'react'
 
-import {App} from '../components/app.js'
+import {App} from '../components/app/app.js'
 import {Copyright} from '../components/copyright.js'
 import {Init} from '../init.js'
 

@@ -2,7 +2,7 @@ import {Box, Newline, Text, useInput} from 'ink'
 import Spinner from 'ink-spinner'
 import React, {useEffect, useState} from 'react'
 
-import {useLogger} from '../../components/app.js'
+import {useLogger} from '../../hooks/use-logger.js'
 import {checkIperfInstalled, runIperf} from './speed-test-info.actions.js'
 import {CheckIperfInstalled, IperfResult, RunIperfResult} from './speed-test-info.types.js'
 import {formatDuration} from './speed-test-info.utils.js'
