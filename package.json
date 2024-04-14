@@ -44,7 +44,12 @@
     "prepare": "husky",
     "test": "mocha --forbid-only \"test/**/*.test.ts\"",
     "posttest": "npm run lint",
-    "version": "oclif readme && git add README.md"
+    "release": "standard-version",
+    "release:major": "npm run release -- --release-as major",
+    "release:minor": "npm run release -- --release-as minor",
+    "release:patch": "npm run release -- --release-as patch",
+    "prerelease:alpha": "npm run release -- --prerelease alpha",
+    "prerelease:beta": "npm run release -- --prerelease beta"
   },
   "oclif": {
     "bin": "nche",
@@ -87,6 +92,7 @@
     "mocha": "^10",
     "oclif": "^4.7.3",
     "shx": "^0.3.4",
+    "standard-version": "^9.5.0",
     "ts-node": "^10.9.2",
     "typescript": "5.3.3"
   },
