@@ -1,4 +1,5 @@
-import {Box, Text} from 'ink'
+import {Box, Newline, Text} from 'ink'
+import Link from 'ink-link'
 import React from 'react'
 
 import {useStore} from '../store/config.js'
@@ -13,9 +14,35 @@ export const Copyright = () => {
 
   return (
     <Box>
-      <Box borderColor={noColor ? 'transparent' : 'yellow'} borderStyle="round" flexDirection="column" padding={1}>
+      <Box
+        borderColor={noColor ? 'transparent' : 'yellow'}
+        borderStyle="round"
+        flexDirection="column"
+        padding={1}
+        paddingLeft={2}
+        paddingRight={2}
+      >
         <Text>
-          {yearComparison(2023)}; Copyright(c) {colorText(color.Cyan, pkg.author, noColor)}
+          {yearComparison(2024)}; Copyright(c) {colorText(color.Cyan, pkg.author.name, noColor)}
+          <Newline />
+          License: {colorText(color.Cyan, pkg.license, noColor)}
+          <Newline />
+          Email: {colorText(color.Cyan, pkg.author.email, noColor)}
+          <Newline />
+          Homepage:
+          <Link fallback={false} url={pkg.homepage}>
+            {colorText(color.Magenta, pkg.homepage, noColor)}
+          </Link>
+          <Newline />
+          Personal website:{' '}
+          <Link fallback={false} url={pkg.author.url}>
+            {colorText(color.Magenta, pkg.author.url, noColor)}
+          </Link>
+          <Newline />
+          Donate:{' '}
+          <Link fallback={false} url={pkg.funding.url}>
+            {colorText(color.Magenta, pkg.funding.url, noColor)}
+          </Link>
         </Text>
       </Box>
     </Box>

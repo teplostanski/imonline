@@ -24,7 +24,15 @@
   "bugs": "https://github.com/teplostanski/nche/issues",
   "repository": "teplostanski/nche",
   "license": "GPL-3.0-only",
-  "author": "teplostanski",
+  "author": {
+    "name": "Igor Teplostanski",
+    "email": "teplostanski@yandex.ru",
+    "url": "https://teplostanski.dev"
+  },
+  "funding": {
+    "type": "crypto",
+    "url": "https://donate.teplostanski.dev"
+  },
   "type": "module",
   "exports": "./lib/index.js",
   "types": "dist/index.d.ts",
@@ -73,6 +81,7 @@
     "chalk": "^5.3.0",
     "immer": "^10.0.4",
     "ink": "^4.4.1",
+    "ink-link": "^3.0.0",
     "ink-spinner": "^5.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
