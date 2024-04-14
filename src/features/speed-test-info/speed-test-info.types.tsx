@@ -15,3 +15,9 @@ export interface CheckIperfInstalled {
   installed: boolean
   message: string
 }
+
+export interface RunIperfResult {
+  error?: string
+  output?: string
+  success: boolean
+}

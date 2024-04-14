@@ -1,11 +1,28 @@
-import chalk from 'chalk'
-import {Box, Text, useInput} from 'ink'
+import {Box, Newline, Text, useInput} from 'ink'
 import Spinner from 'ink-spinner'
 import {spawn} from 'node:child_process'
 import React, {useEffect, useState} from 'react'
 
-import {CheckIperfInstalled, IperfResult} from './speed-test-info.types.js'
-import {checkIperfInstalled, formatDuration} from './speed-test-info.utils.js'
+import {runIperf} from './speed-test-info.actions.js'
+import {CheckIperfInstalled, IperfResult, RunIperfResult} from './speed-test-info.types.js'
+import {formatDuration} from './speed-test-info.utils.js'
+
+export const checkIperfInstalled = (): Promise<CheckIperfInstalled> =>
+  new Promise((resolve) => {
+    const checkIperf = spawn('iperf3', ['--version'])
+
+    checkIperf.on('error', () => {
+      resolve({installed: false, message: 'iperf3 не установлен. Пожалуйста, установите iperf3 для продолжения теста.'})
+    })
+
+    checkIperf.on('exit', (code) => {
+      if (code === 0) {
+        resolve({installed: true, message: ''})
+      } else {
+        resolve({installed: false, message: 'iperf3 не найден.'})
+      }
+    })
+  })
 
 export const SpeedTest = () => {
   const [iperfInstalled, setIperfInstalled] = useState(false)
@@ -15,7 +32,7 @@ export const SpeedTest = () => {
   const [displayUnits, setDisplayUnits] = useState<'MBps' | 'Mbps'>('Mbps')
   const [timeFormat, setTimeFormat] = useState<'ms' | 's'>('s')
   const [testDuration, setTestDuration] = useState('')
-  const [rawDuration, setRawDuration] = useState(0)
+  const [rawDuration, setRawDuration] = useState<number>(0)
   const [showHints, setShowHints] = useState(false)
 
   useEffect(() => {
@@ -61,58 +78,37 @@ export const SpeedTest = () => {
     init()
   }, [])
 
-  function runTest() {
+  async function runTest() {
     setError('')
     setIsTesting(true)
     const startTime = Date.now()
 
-    const iperf = spawn('iperf3', ['-c', 'speedtest.uztelecom.uz', '-p', '5200-5209', '-J'])
+    const result: RunIperfResult = await runIperf()
+    const endTime = Date.now()
+    const elapsedTime = endTime - startTime
+    setRawDuration(elapsedTime)
 
-    let output = ''
-    iperf.stdout.on('data', (data) => {
-      output += data.toString()
-    })
+    setIsTesting(false)
 
-    iperf.stderr.on('data', (data) => {
-      setError(`Ошибка: ${data.toString()}`)
-    })
-
-    iperf.on('close', (code) => {
-      const endTime = Date.now()
-      const elapsedTime = endTime - startTime
-      setRawDuration(elapsedTime)
-      setIsTesting(false)
-
-      if (code === 0) {
-        try {
-          const result = JSON.parse(output)
-          setSpeedTestResult(result)
-        } catch {
-          setError('Ошибка при разборе результатов теста.')
-        }
-      } else {
-        setError(
-          `Ошибка: код ${code}. Проверьте подклчение к сети. Возможно iperf уже запущен, дождитесь завершения процесса или смените iperf хост и перезапустите nche\n\n${chalk.gray(
-            'r - перезапустить тест',
-          )}`,
-        )
+    if (result.success && result.output) {
+      try {
+        const data: IperfResult = JSON.parse(result.output)
+        setSpeedTestResult(data)
+      } catch {
+        setError('Ошибка при разборе результатов теста.')
       }
-    })
+    } else {
+      console.log(result.error)
 
-    return () => {
-      iperf.kill()
+      setError(result.error || 'Ошибка: Никогда такого небыло и вот опять.')
     }
-  }
-
-  if (error) {
-    return <Text color="red">{error}</Text>
   }
 
   const convertUnits = (bitsPerSecond: number) => {
     if (displayUnits === 'Mbps') {
       const mbps = bitsPerSecond / 1e6
       if (mbps < 1) {
-        return `${(bitsPerSecond / 1e3).toFixed(2)} Кбит/с` // Конвертация в килобиты в секунду, если меньше 1 Мбит/с
+        return `${(bitsPerSecond / 1e3).toFixed(2)} Кбит/с`
       }
 
       return `${mbps.toFixed(2)} Мбит/с`
@@ -120,7 +116,7 @@ export const SpeedTest = () => {
 
     const mbps = bitsPerSecond / 8e6
     if (mbps < 1) {
-      return `${(bitsPerSecond / 8e3).toFixed(2)} КБайт/с` // Конвертация в килобайты в секунду, если меньше 1 МБайт/с
+      return `${(bitsPerSecond / 8e3).toFixed(2)} КБайт/с`
     }
 
     return `${mbps.toFixed(2)} МБайт/с`
@@ -131,7 +127,13 @@ export const SpeedTest = () => {
   const toggleDisplayDrationUnit = () => (timeFormat === 's' ? 'миллисекундах' : 'секундах')
 
   if (error) {
-    return <Text color="red">{error}</Text>
+    return (
+      <Text>
+        <Text color="red">{error}</Text>
+        <Newline />
+        <Text color={'gray'}>r - перезапустить тест</Text>
+      </Text>
+    )
   }
 
   return (
