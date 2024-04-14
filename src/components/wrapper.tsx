@@ -3,7 +3,7 @@
 import {Box} from 'ink'
 import React, {FC} from 'react'
 
-import {useStore} from '../store.js'
+import {useStore} from '../store/config.js'
 import withExit from './with-exit.js'
 
 interface WrapperProps {

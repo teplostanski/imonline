@@ -2,7 +2,7 @@
 import chalk from 'chalk'
 import {useEffect, useState} from 'react'
 
-import {useStore} from '../store.js'
+import {useStore} from '../store/config.js'
 
 export const useLogger = (category: string, value: any) => {
   const [loggedMessages, setLoggedMessages] = useState<any>({})

@@ -4,7 +4,7 @@ import {FetchIP} from '../../features/fetch-ip.js'
 import {PingInfo} from '../../features/ping-info/ping-info.js'
 import {SpeedTest} from '../../features/speed-test-info/speed-test-info.js'
 import {useLogger} from '../../hooks/use-logger.js'
-import {useStore} from '../../store.js'
+import {useStore} from '../../store/config.js'
 import {Wrapper} from '../wrapper.js'
 import {AppProps} from './app.types.js'
 

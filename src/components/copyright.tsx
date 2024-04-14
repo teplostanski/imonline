@@ -1,7 +1,7 @@
 import {Box, Text} from 'ink'
 import React from 'react'
 
-import {useStore} from '../store.js'
+import {useStore} from '../store/config.js'
 import {colorText} from '../utils/color-text.js'
 import {color} from '../utils/get-color.js'
 import {loadPackageJson} from '../utils/load-package-json.js'
