@@ -1,6 +1,6 @@
 import {Command} from '@oclif/core'
 
-import { loadPackageJson } from './utils/load-package-json.js'
+import {loadPackageJson} from './utils/load-package-json.js'
 
 const pkg = loadPackageJson()
 

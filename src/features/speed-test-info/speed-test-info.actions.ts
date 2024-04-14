@@ -50,7 +50,7 @@ export const runIperf = (): Promise<RunIperfResult> =>
           process.kill()
         }
       } catch (parseError) {
-        log += `JSON parsing error: ${parseError}\n`;
+        log += `JSON parsing error: ${parseError}\n`
         output += message
         process.kill()
       }

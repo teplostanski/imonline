@@ -19,7 +19,7 @@ export const useLogger = (category: string, value: any) => {
   const {hasLog: logOption} = useStore()
 
   useEffect(() => {
-    const message = JSON.stringify(value, null, 2).replaceAll('\\n', '\n');
+    const message = JSON.stringify(value, null, 2).replaceAll('\\n', '\n')
     if ((logOption === 'all' || logOption?.includes(category)) && !loggedMessages[message]) {
       console.log(`${chalk.magenta(category)}:`, message)
       setLoggedMessages((prev: any) => ({...prev, [message]: true}))
@@ -35,7 +35,7 @@ export const App = ({isNoColor = false, log}: AppProps) => {
 
   useEffect(() => {
     setNoColor(isNoColor)
-     setLog(log)
+    setLog(log)
   }, [isNoColor, setNoColor])
 
   return (

@@ -3,14 +3,18 @@ import {render} from 'ink'
 import React from 'react'
 
 import {App} from '../components/app.js'
+import {Copyright} from '../components/copyright.js'
 import {Init} from '../init.js'
 
 export default class Main extends Init {
   static flags = {
+    copyright: Flags.boolean({
+      char: 'c',
+      summary: 'Show copyright',
+    }),
     log: Flags.string({
-      description: 'Enable specific logs',
       hidden: true,
-      options: ['flags', 'speed-test:log','speed-test:errors','speed-test:output', 'test:logs', 'all'],
+      options: ['flags', 'speed-test:log', 'speed-test:errors', 'speed-test:output', 'test:logs', 'all'],
     }),
     nocolor: Flags.boolean({
       summary: 'Disable colored output',
@@ -31,9 +35,15 @@ export default class Main extends Init {
         this.log(this.version)
       }
 
-      if (flags) {
+      if (flags.copyright) {
+        render(<Copyright />)
+      }
+
+      if (flags.nocolor || flags.log) {
         render(<App isNoColor={flags.nocolor} log={flags.log} />)
-      } else {
+      }
+
+      if (Object.keys(flags).length === 0) {
         render(<App />)
       }
     } catch (error) {
