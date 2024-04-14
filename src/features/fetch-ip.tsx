@@ -1,10 +1,14 @@
 import axios from 'axios'
-import chalk from 'chalk'
 import {Newline, Text} from 'ink'
 import Spinner from 'ink-spinner'
 import React, {useEffect, useState} from 'react'
 
+import {useStore} from '../store.js'
+import {colorText} from '../utils/color-text.js'
+import {color} from '../utils/get-color.js'
+
 export const FetchIP = () => {
+  const {noColor} = useStore()
   const [externalIP, setExternalIP] = useState('')
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState('')
@@ -17,7 +21,9 @@ export const FetchIP = () => {
         setExternalIP(response.data.ip)
         setError('')
       } catch (error) {
-        setError(`Не удалось получить внешний IP-адрес\n${chalk.red((error as Error).message)}`)
+        setError(
+          `${colorText(color.Error, `Ошибка: Не удалось получить внешний IP-адрес\n${(error as Error).message}`, noColor)}`,
+        )
       } finally {
         setIsLoading(false)
       }
@@ -29,7 +35,7 @@ export const FetchIP = () => {
   if (error) {
     return (
       <>
-        <Text>{chalk.red(error)}</Text>
+        <Text>{error}</Text>
         <Newline />
       </>
     )
@@ -42,7 +48,7 @@ export const FetchIP = () => {
           IP: <Spinner />
         </Text>
       ) : (
-        <Text>IP: {chalk.cyan(externalIP)}</Text>
+        <Text>IP: {colorText(color.Cyan, externalIP, noColor)}</Text>
       )}
     </>
   )
