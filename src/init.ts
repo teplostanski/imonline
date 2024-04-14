@@ -1,12 +1,6 @@
 import {Command} from '@oclif/core'
-import {readFileSync} from 'node:fs'
-import {dirname, join} from 'node:path'
-import {fileURLToPath} from 'node:url'
 
-function loadPackageJson() {
-  const pathToPackageJson = join(dirname(fileURLToPath(import.meta.url)), '..', 'package.json')
-  return JSON.parse(readFileSync(pathToPackageJson, 'utf8'))
-}
+import { loadPackageJson } from './utils/load-package-json.js'
 
 const pkg = loadPackageJson()
 
