@@ -1,4 +1,4 @@
-import { Flags } from '@oclif/core'
+import {Flags} from '@oclif/core'
 import {render} from 'ink'
 import React from 'react'
 
@@ -12,10 +12,11 @@ export default class Main extends Init {
       summary: 'Print version',
     }),
   }
-  
+
   async run() {
     const {flags} = await this.parse(Main)
     if (flags.version) this.log(this.version)
+
     if (!flags) render(<App />)
   }
 }
