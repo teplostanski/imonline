@@ -2,6 +2,7 @@ import {Box, Newline, Text, useInput} from 'ink'
 import Spinner from 'ink-spinner'
 import React, {useEffect, useState} from 'react'
 
+import {useLogger} from '../../components/app.js'
 import {checkIperfInstalled, runIperf} from './speed-test-info.actions.js'
 import {CheckIperfInstalled, IperfResult, RunIperfResult} from './speed-test-info.types.js'
 import {formatDuration} from './speed-test-info.utils.js'
@@ -9,6 +10,7 @@ import {formatDuration} from './speed-test-info.utils.js'
 export const SpeedTest = () => {
   const [iperfInstalled, setIperfInstalled] = useState(false)
   const [speedTestResult, setSpeedTestResult] = useState<IperfResult | null>(null)
+  const [speedTestJson, setSpeedTestJson] = useState<null | string>(null)
   const [isTesting, setIsTesting] = useState(false)
   const [error, setError] = useState('')
   const [displayUnits, setDisplayUnits] = useState<'MBps' | 'Mbps'>('Mbps')
@@ -16,6 +18,11 @@ export const SpeedTest = () => {
   const [testDuration, setTestDuration] = useState('')
   const [rawDuration, setRawDuration] = useState<number>(0)
   const [showHints, setShowHints] = useState(false)
+  const [log, setLog] = useState('')
+
+  useLogger('speed-test:log', log)
+  useLogger('speed-test:errors', error)
+  useLogger('speed-test:output', speedTestJson)
 
   useEffect(() => {
     setTestDuration(formatDuration(rawDuration, timeFormat))
@@ -64,11 +71,12 @@ export const SpeedTest = () => {
     setError('')
     setIsTesting(true)
     const startTime = Date.now()
-
     const result: RunIperfResult = await runIperf()
     const endTime = Date.now()
     const elapsedTime = endTime - startTime
     setRawDuration(elapsedTime)
+
+    setLog(result.log || '')
 
     setIsTesting(false)
 
@@ -76,6 +84,7 @@ export const SpeedTest = () => {
       try {
         const data: IperfResult = JSON.parse(result.output)
         setSpeedTestResult(data)
+        setSpeedTestJson(JSON.parse(result.output))
       } catch {
         setError('Ошибка при разборе результатов теста.')
       }

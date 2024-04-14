@@ -18,6 +18,7 @@ export interface CheckIperfInstalled {
 
 export interface RunIperfResult {
   error?: string
+  log?: string
   output?: string
   success: boolean
 }
