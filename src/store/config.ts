@@ -6,5 +6,5 @@ export const useStore = create<ConfigState>((set) => ({
   hasLog: null,
   noColor: false,
   setLog: (hasLog: null | string | undefined) => set({hasLog}),
-  setNoColor: (noColor: boolean) => set({noColor}),
+  setNoColor: (noColor: boolean | undefined) => set({noColor}),
 }))

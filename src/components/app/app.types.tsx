@@ -1,4 +1,4 @@
 export interface AppProps {
-  isNoColor?: boolean
+  isNoColor?: boolean | undefined
   log?: null | string | undefined
 }

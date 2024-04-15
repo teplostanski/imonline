@@ -1,6 +1,6 @@
 import {Box, Newline, Text} from 'ink'
 import Link from 'ink-link'
-import React from 'react'
+import React, {useEffect} from 'react'
 
 import {useStore} from '../store/config.js'
 import {colorText} from '../utils/color-text.js'
@@ -8,9 +8,13 @@ import {color} from '../utils/get-color.js'
 import {loadPackageJson} from '../utils/load-package-json.js'
 import {yearComparison} from '../utils/year-comparison.js'
 
-export const Copyright = () => {
-  const {noColor} = useStore()
+export const Copyright = ({isNoColor}: {isNoColor?: boolean | undefined}) => {
+  const {noColor, setNoColor} = useStore()
   const pkg = loadPackageJson()
+
+  useEffect(() => {
+    setNoColor(isNoColor)
+  }, [isNoColor, setNoColor])
 
   return (
     <Box>

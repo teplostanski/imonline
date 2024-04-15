@@ -33,19 +33,15 @@ export default class Main extends Init {
 
       if (flags.version) {
         this.log(this.version)
+        return
       }
 
       if (flags.copyright) {
-        render(<Copyright />)
+        render(<Copyright isNoColor={flags.nocolor} />)
+        return
       }
 
-      if (flags.nocolor || flags.log) {
-        render(<App isNoColor={flags.nocolor} log={flags.log} />)
-      }
-
-      if (Object.keys(flags).length === 0) {
-        render(<App />)
-      }
+      render(<App isNoColor={flags.nocolor} log={flags.log} />)
     } catch (error) {
       console.error('Error during command execution:', error)
     }

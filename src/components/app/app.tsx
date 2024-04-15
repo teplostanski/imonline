@@ -8,7 +8,7 @@ import {useStore} from '../../store/config.js'
 import {Wrapper} from '../wrapper.js'
 import {AppProps} from './app.types.js'
 
-export const App = ({isNoColor = false, log}: AppProps) => {
+export const App = ({isNoColor, log}: AppProps) => {
   const {setLog, setNoColor} = useStore()
   const [error, setError] = useState('')
 
