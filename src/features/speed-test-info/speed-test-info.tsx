@@ -1,4 +1,3 @@
-/* eslint-disable unicorn/no-negated-condition */
 import {Box, Newline, Text, useInput} from 'ink'
 import Spinner from 'ink-spinner'
 import React, {useEffect, useState} from 'react'
@@ -131,7 +130,7 @@ export const SpeedTest = () => {
         <Text color="red">{error}</Text>
         <Newline />
         {timer !== null ? (
-          <Text color="green">Перезапуск через: {timer} секунд</Text>
+          <Text color="green">Перезапуск через: {timer.toString()} секунд</Text>
         ) : (
           <Text color="gray">r - перезапустить тест</Text>
         )}
@@ -156,7 +155,7 @@ export const SpeedTest = () => {
             <Text>Скорость загрузки: {convertUnits(speedTestResult.end.sum_received.bits_per_second)}</Text>
             <Text>Скорость отдачи: {convertUnits(speedTestResult.end.sum_sent.bits_per_second)}</Text>
             <Text>Пройден за: {testDuration}</Text>
-            {timer && <Text color="green">Перезапуск через: {timer} секунд</Text>}
+            {timer !== null && <Text color="green">Перезапуск через: {timer.toString()} секунд</Text>}
             {showHints ? (
               <>
                 <Text color="gray">r - перезапустить тест</Text>

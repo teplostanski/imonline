@@ -1,6 +1,7 @@
 {
   "extends": ["oclif", "oclif-typescript", "prettier"],
   "rules": {
-    "unicorn/prefer-ternary": "off"
+    "unicorn/prefer-ternary": "off",
+    "unicorn/no-negated-condition": "off"
   }
 }
