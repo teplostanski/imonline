@@ -1,3 +1,4 @@
+/* eslint-disable unicorn/no-negated-condition */
 import {Box, Newline, Text, useInput} from 'ink'
 import Spinner from 'ink-spinner'
 import React, {useEffect, useState} from 'react'
@@ -19,6 +20,7 @@ export const SpeedTest = () => {
   const [rawDuration, setRawDuration] = useState<number>(0)
   const [showHints, setShowHints] = useState(false)
   const [log, setLog] = useState('')
+  const [timer, setTimer] = useState<null | number>(null)
 
   useLogger('speed-test:log', log)
   useLogger('speed-test:errors', error)
@@ -37,11 +39,8 @@ export const SpeedTest = () => {
       setDisplayUnits((prevUnits) => (prevUnits === 'Mbps' ? 'MBps' : 'Mbps'))
     }
 
-    if (
-      (input === 'r' || input === 'к') && //
-      !isTesting
-    ) {
-      runTest()
+    if (input === 'r' && !isTesting && timer === null) {
+      setTimer(10) // Начинаем таймер на 5 секунд
     }
 
     if (input === 't') {
@@ -52,6 +51,17 @@ export const SpeedTest = () => {
       })
     }
   })
+
+  useEffect(() => {
+    if (timer !== null) {
+      if (timer > 0) {
+        setTimeout(() => setTimer(timer - 1), 1000)
+      } else {
+        runTest() // Запуск теста после истечения таймера
+        setTimer(null) // Сброс таймера
+      }
+    }
+  }, [timer])
 
   useEffect(() => {
     const init = async () => {
@@ -120,7 +130,11 @@ export const SpeedTest = () => {
       <Text>
         <Text color="red">{error}</Text>
         <Newline />
-        <Text color={'gray'}>r - перезапустить тест</Text>
+        {timer !== null ? (
+          <Text color="green">Перезапуск через: {timer} секунд</Text>
+        ) : (
+          <Text color="gray">r - перезапустить тест</Text>
+        )}
       </Text>
     )
   }
@@ -142,11 +156,12 @@ export const SpeedTest = () => {
             <Text>Скорость загрузки: {convertUnits(speedTestResult.end.sum_received.bits_per_second)}</Text>
             <Text>Скорость отдачи: {convertUnits(speedTestResult.end.sum_sent.bits_per_second)}</Text>
             <Text>Пройден за: {testDuration}</Text>
+            {timer && <Text color="green">Перезапуск через: {timer} секунд</Text>}
             {showHints ? (
               <>
+                <Text color="gray">r - перезапустить тест</Text>
                 <Text color={'gray'}>u - отобразить скорость в {toggleDisplaySpeedUnit()}</Text>
                 <Text color={'gray'}>t - отобразить время в {toggleDisplayDrationUnit()}</Text>
-                <Text color={'gray'}>r - перезапустить тест</Text>
                 <Text color={'gray'}>? - скрыть подсказки</Text>
               </>
             ) : (

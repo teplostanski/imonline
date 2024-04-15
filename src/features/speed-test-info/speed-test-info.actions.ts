@@ -19,12 +19,15 @@ export const checkIperfInstalled = (): Promise<CheckIperfInstalled> =>
     })
   })
 
+global.iperfPid = null
+
 export const runIperf = (): Promise<RunIperfResult> =>
   new Promise((resolve) => {
-    const process = spawn('iperf3', ['-c', 'speedtest.uztelecom.uz', '-p', '5200-5209', '-J'])
+    const process = spawn('iperf3', ['-c', 'speedtest.uztelecom.uz', '-p', '5200-5209', '-R', '-J'])
+    global.iperfPid = process.pid
     let output = ''
     let error = ''
-    let log = ''
+    let log = `${global.iperfPid}`
 
     process.stdout.on('data', (data) => {
       const message = data.toString()
@@ -61,7 +64,8 @@ export const runIperf = (): Promise<RunIperfResult> =>
         resolve({log, output, success: true})
       } else {
         if (!error) error = 'Error executing command.'
-        log += `Process exited with code ${code} and error "${error}"\n`
+        log += `Process exited with code ${code} and error ${error}\n`
+        global.iperfPid = null
         process.kill()
         resolve({error, log, success: false})
       }
@@ -69,6 +73,7 @@ export const runIperf = (): Promise<RunIperfResult> =>
 
     process.on('error', (err) => {
       log += `Process error: ${err.message}\n`
+      global.iperfPid = null
       process.kill()
       resolve({error: err.message, log, success: false})
     })
