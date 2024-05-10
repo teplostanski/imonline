@@ -1,5 +1,5 @@
 import {Box, Newline, Text} from 'ink'
-import Link from 'ink-link'
+// import Link from 'ink-link'
 import React, {useEffect} from 'react'
 
 import {useStore} from '../store/config.js'
@@ -34,19 +34,17 @@ export const Copyright = ({isNoColor}: {isNoColor?: boolean | undefined}) => {
           Email: {colorText(color.Cyan, pkg.author.email, noColor)}
           <Newline />
           Homepage:
-          <Link fallback={false} url={pkg.homepage}>
-            {colorText(color.Magenta, pkg.homepage, noColor)}
-          </Link>
+          {/* <Link fallback={false} url={pkg.homepage}> */}
+          {colorText(color.Magenta, pkg.homepage, noColor)}
+          {/* </Link> */}
           <Newline />
-          Personal website:{' '}
-          <Link fallback={false} url={pkg.author.url}>
-            {colorText(color.Magenta, pkg.author.url, noColor)}
-          </Link>
+          Personal website: {/* <Link fallback={false} url={pkg.author.url}> */}
+          {colorText(color.Magenta, pkg.author.url, noColor)}
+          {/* </Link> */}
           <Newline />
-          Donate:{' '}
-          <Link fallback={false} url={pkg.funding.url}>
-            {colorText(color.Magenta, pkg.funding.url, noColor)}
-          </Link>
+          Donate: {/* <Link fallback={false} url={pkg.funding.url}> */}
+          {colorText(color.Magenta, pkg.funding.url, noColor)}
+          {/* </Link> */}
         </Text>
       </Box>
     </Box>

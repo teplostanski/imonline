@@ -31,6 +31,7 @@ $ nche
 ## Flags
 
 ```bash
-    --help    Show help
--v, --version Print version
+  -c, --copyright  Show copyright
+  -v, --version    Print version
+      --nocolor    Disable colored output
 ```
