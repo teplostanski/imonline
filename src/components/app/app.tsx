@@ -9,7 +9,7 @@ import {Wrapper} from '../wrapper.js'
 import {AppProps} from './app.types.js'
 
 export const App = ({isNoColor, log}: AppProps) => {
-  const {setLog, setNoColor} = useStore()
+  const {noColor, setLog, setNoColor} = useStore()
   const [error, setError] = useState('')
 
   useLogger('flags', {noColor: isNoColor})
@@ -22,7 +22,7 @@ export const App = ({isNoColor, log}: AppProps) => {
   return (
     <Wrapper>
       <FetchIP />
-      <PingInfo onError={setError} />
+      <PingInfo isNoColor={noColor} onError={setError} />
       {!error && <SpeedTest />}
     </Wrapper>
   )

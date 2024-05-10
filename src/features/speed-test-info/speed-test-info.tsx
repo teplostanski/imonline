@@ -3,6 +3,9 @@ import Spinner from 'ink-spinner'
 import React, {useEffect, useState} from 'react'
 
 import {useLogger} from '../../hooks/use-logger.js'
+import {useStore} from '../../store/config.js'
+import {colorText} from '../../utils/color-text.js'
+import {color} from '../../utils/get-color.js'
 import {checkIperfInstalled, runIperf} from './speed-test-info.actions.js'
 import {CheckIperfInstalled, IperfResult, RunIperfResult} from './speed-test-info.types.js'
 import {formatDuration} from './speed-test-info.utils.js'
@@ -20,6 +23,7 @@ export const SpeedTest = () => {
   const [showHints, setShowHints] = useState(false)
   const [log, setLog] = useState('')
   const [timer, setTimer] = useState<null | number>(null)
+  const {noColor} = useStore()
 
   useLogger('speed-test:log', log)
   useLogger('speed-test:errors', error)
@@ -124,16 +128,18 @@ export const SpeedTest = () => {
 
   const toggleDisplayDrationUnit = () => (timeFormat === 's' ? 'миллисекундах' : 'секундах')
 
+  const restartTest = (timer: number) => (
+    <Text>{colorText(color.Green, `Перезапуск через: ${timer.toString()} секунд`, noColor)}</Text>
+  )
+
+  const printHint = (text: string) => <Text>{colorText(color.Gray, text, noColor)}</Text>
+
   if (error) {
     return (
       <Text>
         <Text color="red">{error}</Text>
         <Newline />
-        {timer !== null ? (
-          <Text color="green">Перезапуск через: {timer.toString()} секунд</Text>
-        ) : (
-          <Text color="gray">r - перезапустить тест</Text>
-        )}
+        {timer !== null ? restartTest(timer) : printHint('r - перезапустить тест')}
       </Text>
     )
   }
@@ -155,16 +161,16 @@ export const SpeedTest = () => {
             <Text>Скорость загрузки: {convertUnits(speedTestResult.end.sum_received.bits_per_second)}</Text>
             <Text>Скорость отдачи: {convertUnits(speedTestResult.end.sum_sent.bits_per_second)}</Text>
             <Text>Пройден за: {testDuration}</Text>
-            {timer !== null && <Text color="green">Перезапуск через: {timer.toString()} секунд</Text>}
+            {timer !== null && restartTest(timer)}
             {showHints ? (
               <>
-                <Text color="gray">r - перезапустить тест</Text>
-                <Text color={'gray'}>u - отобразить скорость в {toggleDisplaySpeedUnit()}</Text>
-                <Text color={'gray'}>t - отобразить время в {toggleDisplayDrationUnit()}</Text>
-                <Text color={'gray'}>? - скрыть подсказки</Text>
+                <Text>{printHint('r - перезапустить тест')}</Text>
+                <Text>{printHint(`u - отобразить скорость в ${toggleDisplaySpeedUnit()}`)}</Text>
+                <Text>{printHint(`t - отобразить время в ${toggleDisplayDrationUnit()}`)}</Text>
+                <Text>{printHint('? - скрыть подсказки')}</Text>
               </>
             ) : (
-              <Text color={'gray'}>? - показать подсказки</Text>
+              <Text>{printHint('? - показать подсказки')}</Text>
             )}
           </>
         )

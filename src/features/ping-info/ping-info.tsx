@@ -3,12 +3,18 @@ import Spinner from 'ink-spinner'
 import {spawn} from 'node:child_process'
 import React, {FC, useEffect, useState} from 'react'
 
+import {useStore} from '../../store/config.js'
 import {PingInfoProps} from './ping-info.types.js'
 import {getColor} from './ping-info.utils.js'
 
-export const PingInfo: FC<PingInfoProps> = ({onError}) => {
+export const PingInfo: FC<PingInfoProps> = ({isNoColor, onError}) => {
   const [pingInfo, setPingInfo] = useState({icmpSeq: '', maxTime: '', minTime: '', time: ''})
   const [error, setError] = useState('')
+  const {noColor, setNoColor} = useStore()
+
+  useEffect(() => {
+    setNoColor(isNoColor)
+  }, [isNoColor, setNoColor])
 
   useEffect(() => {
     const pingProcess = spawn('ping', ['ya.ru'])
@@ -77,7 +83,7 @@ export const PingInfo: FC<PingInfoProps> = ({onError}) => {
           </Text>
         )}
         {pingInfo.time ? (
-          <Text>Пинг: {getColor(pingInfo.time)}</Text>
+          <Text>Пинг: {getColor(pingInfo.time, noColor)}</Text>
         ) : (
           <Text>
             Пинг: <Spinner />
@@ -86,8 +92,8 @@ export const PingInfo: FC<PingInfoProps> = ({onError}) => {
       </Box>
       {pingInfo.time && (
         <Box>
-          <Text>Мин.: {getColor(pingInfo.minTime)}, </Text>
-          <Text>Макс.: {getColor(pingInfo.maxTime)}</Text>
+          <Text>Мин.: {getColor(pingInfo.minTime, noColor)}, </Text>
+          <Text>Макс.: {getColor(pingInfo.maxTime, noColor)}</Text>
         </Box>
       )}
     </Box>
