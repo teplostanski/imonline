@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/teplostanski/nche/compare/v1.0.0-beta.0...v1.1.0) (2024-05-10)
+
+### Features
+
+- add feature nocolor in to fetch ip ([4884200](https://github.com/teplostanski/nche/commit/488420002ba624eec67f5c5eff2fba57101fb71d))
+- add full support nocolor ([2b94466](https://github.com/teplostanski/nche/commit/2b9446698f78e4d5cd965021fd3321b6fba50f99))
+- add zustand store and flag --nocolor ([e8f420a](https://github.com/teplostanski/nche/commit/e8f420a336c8ffc9636ffb6a8b8c29ba02e6611a))
+- create copyright ([78ca4a9](https://github.com/teplostanski/nche/commit/78ca4a9362075bebd643d33c1773c222dd450312))
+- extend copyright ([c87473d](https://github.com/teplostanski/nche/commit/c87473ddc40a9e016ee816ad23a4229674e037eb))
+
+### Bug Fixes
+
+- error Text string 0 must be rendered inside <Text> component ([4cc6db0](https://github.com/teplostanski/nche/commit/4cc6db07b7e18ac37262c2c107e93a2aba31a0e0))
+- errors iperf3 ([3f0e6fd](https://github.com/teplostanski/nche/commit/3f0e6fdd2c3d24553c0714538c552c2c460a6981))
+- render copyright with no color flag ([c717326](https://github.com/teplostanski/nche/commit/c7173261c5c22482bdc4c69f5b14d1ec27a99fdd))
+- termination of external processes via the outdated iperf3 pid ([1e359af](https://github.com/teplostanski/nche/commit/1e359af9e4b3bbdae971ba637052ea2b8e2a8563))
+
 ## [1.0.0-beta.0](https://github.com/teplostanski/nche/compare/v1.0.0-alpha.2...v1.0.0-beta.0) (2024-04-14)
 
 ### Features
