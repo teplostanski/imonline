@@ -23,7 +23,10 @@
   ],
   "homepage": "https://github.com/teplostanski/nche#readme",
   "bugs": "https://github.com/teplostanski/nche/issues",
-  "repository": "https://github.com/teplostanski/nche",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/teplostanski/nche.git"
+  },
   "license": "GPL-3.0-only",
   "author": {
     "name": "Igor Teplostanski",
@@ -38,7 +41,7 @@
   "exports": "./lib/index.js",
   "types": "dist/index.d.ts",
   "bin": {
-    "nche": "./bin/run.js"
+    "nche": "bin/run.js"
   },
   "files": [
     "/bin",
