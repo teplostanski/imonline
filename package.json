@@ -1,6 +1,6 @@
 {
   "name": "nche",
-  "version": "1.0.0-beta.0",
+  "version": "1.0.0",
   "description": "Network Checker is a user-friendly CLI (TUI) application that offers real-time IP discovery, ping statistics, and speed testing to optimize your network performance.",
   "keywords": [
     "network",
@@ -18,11 +18,12 @@
     "network-monitoring",
     "network-optimization",
     "network-checker",
-    "tech-tools"
+    "tech-tools",
+    "ink"
   ],
   "homepage": "https://github.com/teplostanski/nche#readme",
   "bugs": "https://github.com/teplostanski/nche/issues",
-  "repository": "teplostanski/nche",
+  "repository": "https://github.com/teplostanski/nche",
   "license": "GPL-3.0-only",
   "author": {
     "name": "Igor Teplostanski",

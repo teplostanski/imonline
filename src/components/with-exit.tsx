@@ -1,12 +1,14 @@
-import {Box, Text, useInput} from 'ink'
+import {Box, Text, useApp, useInput} from 'ink'
 import React, {ComponentType, FC} from 'react'
 
 const withExit =
-  <P extends object>(WrappedComponent: ComponentType<P>, onExit: () => void): FC<P> =>
+  <P extends object>(WrappedComponent: ComponentType<P>): FC<P> =>
   (props: P) => {
+    const app = useApp()
+
     useInput((input) => {
       if (input === 'q' || input === 'й') {
-        onExit()
+        app.exit()
       }
     })
 

@@ -1,5 +1,3 @@
-/* eslint-disable unicorn/no-process-exit */
-/* eslint-disable n/no-process-exit */
 // src/components/wrapper.tsx
 import {Box} from 'ink'
 import React, {FC} from 'react'
@@ -23,10 +21,6 @@ const Wrapper: FC<WrapperProps> = ({children}) => {
   )
 }
 
-const onExit = () => {
-  process.exit(0)
-}
-
-const WrapperWithQuit = withExit(Wrapper, onExit)
+const WrapperWithQuit = withExit(Wrapper)
 
 export {WrapperWithQuit as Wrapper}
