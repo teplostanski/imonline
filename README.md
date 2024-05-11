@@ -1,17 +1,28 @@
-# nche
+<div align='center'>
+  <h1>nche</h1>
 
-![NPM Version](https://img.shields.io/npm/v/nche?style=for-the-badge&color=%23907ad6)
-![NPM License](https://img.shields.io/npm/l/nche?style=for-the-badge&color=d2f898)
-![NPM Type Definitions](https://img.shields.io/npm/types/nche?style=for-the-badge&color=b8d0eb)
-![NPM Downloads](https://img.shields.io/npm/d18m/nche?style=for-the-badge&color=%23a8e8d6)
-![GitHub package.json dev/peer/optional dependency version](https://img.shields.io/github/package-json/dependency-version/teplostanski/nche/dev/oclif?style=for-the-badge&color=%23ffeb91)
-![GitHub package.json prod dependency version](https://img.shields.io/github/package-json/dependency-version/teplostanski/nche/%40oclif%2Fcore?style=for-the-badge&color=%23ffeb91)
-![GitHub package.json prod dependency version](https://img.shields.io/github/package-json/dependency-version/teplostanski/nche/ink?style=for-the-badge&color=%23ff91c7)
-![GitHub package.json prod dependency version](https://img.shields.io/github/package-json/dependency-version/teplostanski/nche/react?style=for-the-badge&color=%23ff91c7)
+[<img alt="NPM Version" src="https://img.shields.io/npm/v/nche?style=for-the-badge&color=%23907ad6">](https://www.npmjs.com/package/nche)
+[<img alt="NPM Downloads" src="https://img.shields.io/npm/d18m/nche?style=for-the-badge&color=%23a8e8d6">](https://www.npmjs.com/package/nche)
+[<img alt="GitHub Issues" src="https://img.shields.io/github/issues/teplostanski/nche?style=for-the-badge&color=%23a8d0fa">](https://github.com/teplostanski/nche/issues)
+[<img alt="GitHub Pull Requests" src="https://img.shields.io/github/issues-pr/teplostanski/nche?style=for-the-badge&color=%23a8d0fa">](https://github.com/teplostanski/nche/pulls)
 
-> Network Checker is a user-friendly CLI (TUI) application that offers real-time IP discovery, ping statistics, and speed testing to optimize your network performance.
+[<img alt="NPM License" src="https://img.shields.io/npm/l/nche?style=flat-square&color=d2f898">](https://github.com/teplostanski/nche/blob/main/LICENSE.md)
+[<img alt="NPM Type Definitions" src="https://img.shields.io/npm/types/nche?style=flat-square&color=b8d0eb">](https://github.com/teplostanski/nche)
+[<img alt="GitHub package.json dev/peer/optional dependency version" src="https://img.shields.io/github/package-json/dependency-version/teplostanski/nche/dev/oclif?style=flat-square&color=%23ffeb91">](https://github.com/teplostanski/nche/blob/main/package.json)
+[<img alt="GitHub package.json prod dependency version" src="https://img.shields.io/github/package-json/dependency-version/teplostanski/nche/%40oclif%2Fcore?style=flat-square&color=%23ffeb91">](https://github.com/teplostanski/nche/blob/main/package.json)
+[<img alt="GitHub package.json prod dependency version" src="https://img.shields.io/github/package-json/dependency-version/teplostanski/nche/ink?style=flat-square&color=%23ff91c7">](https://github.com/teplostanski/nche/blob/main/package.json)
+[<img alt="GitHub package.json prod dependency version" src="https://img.shields.io/github/package-json/dependency-version/teplostanski/nche/react?style=flat-square&color=%23ff91c7">](https://github.com/teplostanski/nche/blob/main/package.json)
 
-<img src="https://raw.githubusercontent.com/teplostanski/nche/main/preview.gif" alt="preview" width="720"/>
+  <br>
+
+  <h3> Network Checker is a user-friendly CLI (TUI) application that offers real-time IP discovery, ping statistics, and speed testing to optimize your network performance.</h3>
+  
+  <br>
+  
+  <img src="https://raw.githubusercontent.com/teplostanski/nche/main/preview.gif" alt="preview" width="720"/>
+</div>
+
+<br>
 
 ## Install
 
@@ -25,7 +36,7 @@ Or run without installation
 $ npx nche
 ```
 
-## ⚠️⚠️⚠️ Warning: Install `iperf3` on your OS for the speed test to work correctly 🚨🚨🚨
+<h2 align="center">⚠️⚠️⚠️ Warning: Install <code>iperf3</code> on your OS for the speed test to work correctly 🚨🚨🚨</h2>
 
 ## Usage
 
