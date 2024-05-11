@@ -16,11 +16,13 @@
   <br>
 
   <h3> Network Checker is a user-friendly CLI (TUI) application that offers real-time IP discovery, ping statistics, and speed testing to optimize your network performance.</h3>
+  
+  <br>
+  
+  <img src="https://raw.githubusercontent.com/teplostanski/nche/main/preview.gif" alt="preview" width="720"/>
 </div>
 
 <br>
-
-<img src="https://raw.githubusercontent.com/teplostanski/nche/main/preview.gif" alt="preview" width="720"/>
 
 ## Install
 
