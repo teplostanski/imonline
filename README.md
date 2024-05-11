@@ -28,6 +28,8 @@
 
 ## Install
 
+[npmjs.com](https://www.npmjs.com/package/nche)
+
 ```bash
 npm install -g nche
 ```
