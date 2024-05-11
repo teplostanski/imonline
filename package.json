@@ -1,6 +1,6 @@
 {
   "name": "nche",
-  "version": "2.0.0-beta.0",
+  "version": "2.0.0-beta.1",
   "description": "Network Checker is a user-friendly CLI (TUI) application that offers real-time IP discovery, ping statistics, and speed testing to optimize your network performance.",
   "scripts": {
     "build": "shx rm -rf dist && tsc -b",
@@ -15,6 +15,8 @@
     "release:major": "npm run release -- --release-as major",
     "release:minor": "npm run release -- --release-as minor",
     "release:patch": "npm run release -- --release-as patch",
+    "prerelease:alpha": "npm run release -- --prerelease alpha",
+    "prerelease:beta": "npm run release -- --prerelease beta",
     "prerelease:major:alpha": "npm run release -- --release-as major --prerelease alpha",
     "prerelease:major:beta": "npm run release -- --release-as major --prerelease beta",
     "prerelease:minor:alpha": "npm run release -- --release-as minor --prerelease alpha",

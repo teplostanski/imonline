@@ -9,9 +9,6 @@
 ![GitHub package.json prod dependency version](https://img.shields.io/github/package-json/dependency-version/teplostanski/nche/ink?style=for-the-badge&color=%23ff91c7)
 ![GitHub package.json prod dependency version](https://img.shields.io/github/package-json/dependency-version/teplostanski/nche/react?style=for-the-badge&color=%23ff91c7)
 
-
-
-
 > Network Checker is a user-friendly CLI (TUI) application that offers real-time IP discovery, ping statistics, and speed testing to optimize your network performance.
 
 <img src="https://raw.githubusercontent.com/teplostanski/nche/main/preview.gif" alt="preview" width="720"/>
