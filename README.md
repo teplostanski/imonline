@@ -57,7 +57,7 @@ $ nche
 <br>
 
 <h2>
-  <img src="./heart.svg" alt="heart" width="18"/>
+  <img src="./heart.png" alt="heart" width="18"/>
   <strong>Fund</strong>
   <a href="https://donate.teplostanski.dev"> this project</a>
 </h2>
