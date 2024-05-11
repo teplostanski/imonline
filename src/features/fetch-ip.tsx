@@ -1,8 +1,9 @@
 import axios from 'axios'
-import {Newline, Text} from 'ink'
+import {Text} from 'ink'
 import Spinner from 'ink-spinner'
 import React, {useEffect, useState} from 'react'
 
+import Error from '../components/error.js'
 import {useStore} from '../store/config.js'
 import {colorText} from '../utils/color-text.js'
 import {color} from '../utils/get-color.js'
@@ -21,9 +22,7 @@ export const FetchIP = () => {
         setExternalIP(response.data.ip)
         setError('')
       } catch (error) {
-        setError(
-          `${colorText(color.Error, `Ошибка: Не удалось получить внешний IP-адрес\n${(error as Error).message}`, noColor)}`,
-        )
+        setError(`Не удалось получить внешний IP-адрес\n${(error as Error).message}`)
       } finally {
         setIsLoading(false)
       }
@@ -34,10 +33,9 @@ export const FetchIP = () => {
 
   if (error) {
     return (
-      <>
-        <Text>{error}</Text>
-        <Newline />
-      </>
+      <Error marginBottom={-1} marginLeft={-2} marginRight={-2} marginTop={-2}>
+        {error}
+      </Error>
     )
   }
 

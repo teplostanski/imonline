@@ -8,6 +8,8 @@ const Gray = chalk.gray
 const Error = chalk.red
 const Cyan = chalk.cyan
 
+const inkError = 'red'
+
 export const color = {
   Cyan,
   Error,
@@ -16,4 +18,5 @@ export const color = {
   GreenBright,
   Magenta,
   PeachUnderline,
+  inkError,
 }
