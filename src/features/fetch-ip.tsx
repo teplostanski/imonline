@@ -3,7 +3,7 @@ import {Text} from 'ink'
 import Spinner from 'ink-spinner'
 import React, {useEffect, useState} from 'react'
 
-import Error from '../components/error.js'
+import Info from '../components/info.js'
 import {useStore} from '../store/config.js'
 import {colorText} from '../utils/color-text.js'
 import {color} from '../utils/get-color.js'
@@ -31,16 +31,8 @@ export const FetchIP = () => {
     fetchIP()
   }, [])
 
-  if (error) {
-    return (
-      <Error marginBottom={-1} marginLeft={-2} marginRight={-2} marginTop={-2}>
-        {error}
-      </Error>
-    )
-  }
-
   return (
-    <>
+    <Info error={error}>
       {isLoading ? (
         <Text>
           IP: <Spinner />
@@ -48,6 +40,6 @@ export const FetchIP = () => {
       ) : (
         <Text>IP: {colorText(color.Cyan, externalIP, noColor)}</Text>
       )}
-    </>
+    </Info>
   )
 }

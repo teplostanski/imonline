@@ -2,6 +2,26 @@
   "name": "nche",
   "version": "1.1.2",
   "description": "Network Checker is a user-friendly CLI (TUI) application that offers real-time IP discovery, ping statistics, and speed testing to optimize your network performance.",
+  "scripts": {
+    "build": "shx rm -rf dist && tsc -b",
+    "lint": "eslint . --ext .ts,.tsx --fix",
+    "prettier": "prettier --write \"**/*.{ts,tsx,js,jsx,json,css,md}\"",
+    "prepack": "npm run build && oclif manifest && oclif readme",
+    "postpack": "shx rm -f oclif.manifest.json",
+    "prepare": "husky",
+    "test": "mocha --forbid-only \"test/**/*.test.ts\"",
+    "posttest": "npm run lint",
+    "release": "standard-version",
+    "release:major": "npm run release -- --release-as major",
+    "release:minor": "npm run release -- --release-as minor",
+    "release:patch": "npm run release -- --release-as patch",
+    "prerelease:major:alpha": "npm run release -- --release-as major --prerelease alpha",
+    "prerelease:major:beta": "npm run release -- --release-as major --prerelease beta",
+    "prerelease:minor:alpha": "npm run release -- --release-as minor --prerelease alpha",
+    "prerelease:minor:beta": "npm run release -- --release-as minor --prerelease beta",
+    "prerelease:patch:alpha": "npm run release -- --release-as patch --prerelease alpha",
+    "prerelease:patch:beta": "npm run release -- --release-as patch --prerelease beta"
+  },
   "keywords": [
     "network",
     "tools",
@@ -49,22 +69,6 @@
     "/oclif.manifest.json",
     "/LICENSE.md"
   ],
-  "scripts": {
-    "build": "shx rm -rf dist && tsc -b",
-    "lint": "eslint . --ext .ts,.tsx --fix",
-    "prettier": "prettier --write \"**/*.{ts,tsx,js,jsx,json,css,md}\"",
-    "prepack": "npm run build && oclif manifest && oclif readme",
-    "postpack": "shx rm -f oclif.manifest.json",
-    "prepare": "husky",
-    "test": "mocha --forbid-only \"test/**/*.test.ts\"",
-    "posttest": "npm run lint",
-    "release": "standard-version",
-    "release:major": "npm run release -- --release-as major",
-    "release:minor": "npm run release -- --release-as minor",
-    "release:patch": "npm run release -- --release-as patch",
-    "prerelease:alpha": "npm run release -- --prerelease alpha",
-    "prerelease:beta": "npm run release -- --prerelease beta"
-  },
   "oclif": {
     "bin": "nche",
     "commands": {

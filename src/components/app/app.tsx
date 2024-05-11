@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect} from 'react'
 
 import {FetchIP} from '../../features/fetch-ip.js'
 import {PingInfo} from '../../features/ping-info/ping-info.js'
@@ -9,8 +9,7 @@ import {Wrapper} from '../wrapper.js'
 import {AppProps} from './app.types.js'
 
 export const App = ({isNoColor, log}: AppProps) => {
-  const {noColor, setLog, setNoColor} = useStore()
-  const [error, setError] = useState('')
+  const {setLog, setNoColor} = useStore()
 
   useLogger('flags', {noColor: isNoColor})
 
@@ -22,8 +21,8 @@ export const App = ({isNoColor, log}: AppProps) => {
   return (
     <Wrapper>
       <FetchIP />
-      <PingInfo isNoColor={noColor} onError={setError} />
-      {!error && <SpeedTest />}
+      <PingInfo />
+      <SpeedTest />
     </Wrapper>
   )
 }

@@ -1,7 +1,8 @@
-import {Box, Newline, Text, useInput} from 'ink'
+import {Box, Text, useInput} from 'ink'
 import Spinner from 'ink-spinner'
 import React, {useEffect, useState} from 'react'
 
+import Info from '../../components/info.js'
 import {useLogger} from '../../hooks/use-logger.js'
 import {useStore} from '../../store/config.js'
 import {colorText} from '../../utils/color-text.js'
@@ -21,6 +22,7 @@ export const SpeedTest = () => {
   const [testDuration, setTestDuration] = useState('')
   const [rawDuration, setRawDuration] = useState<number>(0)
   const [showHints, setShowHints] = useState(false)
+  const [hasStart, setHasStart] = useState(false)
   const [log, setLog] = useState('')
   const [timer, setTimer] = useState<null | number>(null)
   const {noColor} = useStore()
@@ -34,6 +36,10 @@ export const SpeedTest = () => {
   }, [rawDuration, timeFormat])
 
   useInput((input) => {
+    if (input === 's' || input === 'ы') {
+      setHasStart(true)
+    }
+
     if (input === '?') {
       setShowHints(!showHints)
     }
@@ -42,11 +48,11 @@ export const SpeedTest = () => {
       setDisplayUnits((prevUnits) => (prevUnits === 'Mbps' ? 'MBps' : 'Mbps'))
     }
 
-    if (input === 'r' && !isTesting && timer === null) {
-      setTimer(10) // Начинаем таймер на 5 секунд
+    if (input === 'r' || (input === 'к' && !isTesting && timer === null)) {
+      setTimer(10)
     }
 
-    if (input === 't') {
+    if (input === 't' || input === 'е') {
       setTimeFormat((currentFormat) => {
         const newFormat = currentFormat === 's' ? 'ms' : 's'
         setTestDuration(formatDuration(rawDuration, newFormat))
@@ -60,25 +66,27 @@ export const SpeedTest = () => {
       if (timer > 0) {
         setTimeout(() => setTimer(timer - 1), 1000)
       } else {
-        runTest() // Запуск теста после истечения таймера
-        setTimer(null) // Сброс таймера
+        runTest()
+        setTimer(null)
       }
     }
   }, [timer])
 
   useEffect(() => {
-    const init = async () => {
-      const result: CheckIperfInstalled = await checkIperfInstalled()
-      setIperfInstalled(result.installed)
-      if (result.installed) {
-        runTest()
-      } else {
-        setError(result.message)
+    if (hasStart) {
+      const init = async () => {
+        const result: CheckIperfInstalled = await checkIperfInstalled()
+        setIperfInstalled(result.installed)
+        if (result.installed) {
+          runTest()
+        } else {
+          setError(result.message)
+        }
       }
-    }
 
-    init()
-  }, [])
+      init()
+    }
+  }, [hasStart])
 
   async function runTest() {
     setError('')
@@ -134,49 +142,50 @@ export const SpeedTest = () => {
 
   const printHint = (text: string) => <Text>{colorText(color.Gray, text, noColor)}</Text>
 
-  if (error) {
-    return (
-      <Text>
-        <Text color="red">{error}</Text>
-        <Newline />
-        {timer !== null ? restartTest(timer) : printHint('r - перезапустить тест')}
-      </Text>
-    )
+  const postError = () => {
+    if (timer !== null) {
+      return restartTest(timer)
+    }
+
+    return printHint('r - перезапустить тест')
   }
 
   return (
-    <Box flexDirection="column">
-      {iperfInstalled ? (
-        isTesting || !speedTestResult ? (
-          <>
-            <Text>
-              Скорость загрузки: <Spinner />
-            </Text>
-            <Text>
-              Скорость отдачи: <Spinner />
-            </Text>
-          </>
-        ) : (
-          <>
-            <Text>Скорость загрузки: {convertUnits(speedTestResult.end.sum_received.bits_per_second)}</Text>
-            <Text>Скорость отдачи: {convertUnits(speedTestResult.end.sum_sent.bits_per_second)}</Text>
-            <Text>Пройден за: {testDuration}</Text>
-            {timer !== null && restartTest(timer)}
-            {showHints ? (
+    <Info error={error} postError={postError()}>
+      {hasStart ? (
+        <Box flexDirection="column">
+          {iperfInstalled &&
+            (isTesting || !speedTestResult ? (
               <>
-                <Text>{printHint('r - перезапустить тест')}</Text>
-                <Text>{printHint(`u - отобразить скорость в ${toggleDisplaySpeedUnit()}`)}</Text>
-                <Text>{printHint(`t - отобразить время в ${toggleDisplayDrationUnit()}`)}</Text>
-                <Text>{printHint('? - скрыть подсказки')}</Text>
+                <Text>
+                  Скорость загрузки: <Spinner />
+                </Text>
+                <Text>
+                  Скорость отдачи: <Spinner />
+                </Text>
               </>
             ) : (
-              <Text>{printHint('? - показать подсказки')}</Text>
-            )}
-          </>
-        )
+              <>
+                <Text>Скорость загрузки: {convertUnits(speedTestResult.end.sum_received.bits_per_second)}</Text>
+                <Text>Скорость отдачи: {convertUnits(speedTestResult.end.sum_sent.bits_per_second)}</Text>
+                <Text>Пройден за: {testDuration}</Text>
+                {timer !== null && restartTest(timer)}
+                {showHints ? (
+                  <>
+                    <Text>{printHint('r - перезапустить тест')}</Text>
+                    <Text>{printHint(`u - отобразить скорость в ${toggleDisplaySpeedUnit()}`)}</Text>
+                    <Text>{printHint(`t - отобразить время в ${toggleDisplayDrationUnit()}`)}</Text>
+                    <Text>{printHint('? - скрыть подсказки')}</Text>
+                  </>
+                ) : (
+                  <Text>{printHint('? - показать подсказки')}</Text>
+                )}
+              </>
+            ))}
+        </Box>
       ) : (
-        <Text>iperf3 не установлен. Пожалуйста, установите iperf3 для продолжения теста.</Text>
+        <Text>{printHint('s - тест скорости')}</Text>
       )}
-    </Box>
+    </Info>
   )
 }
