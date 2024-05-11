@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0-beta.0](https://github.com/teplostanski/nche/compare/v1.1.2-alpha.0...v2.0.0-beta.0) (2024-05-11)
+
+### ⚠ BREAKING CHANGES
+
+- change user interface and refactoring code
+
+### Features
+
+- change UI ([ef01878](https://github.com/teplostanski/nche/commit/ef018783048507e0ae5a67a7a76d02889ffd509e))
+- create Error component ([9843b93](https://github.com/teplostanski/nche/commit/9843b93e9be94cd6ab0535d876065c104a3e98de))
+
+### Bug Fixes
+
+- print react warning ([e17934f](https://github.com/teplostanski/nche/commit/e17934f74ba40a8a3c7b1526aa8840649bcb3350))
+
 ### [1.1.2](https://github.com/teplostanski/nche/compare/v1.1.2-alpha.0...v1.1.2) (2024-05-10)
 
 ### [1.1.2-alpha.0](https://github.com/teplostanski/nche/compare/v1.1.1...v1.1.2-alpha.0) (2024-05-10)
