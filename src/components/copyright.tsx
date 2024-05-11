@@ -33,8 +33,7 @@ export const Copyright = ({isNoColor}: {isNoColor?: boolean | undefined}) => {
           <Newline />
           Email: {colorText(color.Cyan, pkg.author.email, noColor)}
           <Newline />
-          Homepage:
-          {/* <Link fallback={false} url={pkg.homepage}> */}
+          Homepage: {/* <Link fallback={false} url={pkg.homepage}> */}
           {colorText(color.Magenta, pkg.homepage, noColor)}
           {/* </Link> */}
           <Newline />

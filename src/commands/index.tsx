@@ -17,6 +17,7 @@ export default class Main extends Init {
       options: ['flags', 'speed-test:log', 'speed-test:errors', 'speed-test:output', 'test:logs', 'all', 'pid'],
     }),
     nocolor: Flags.boolean({
+      char: 'N',
       summary: 'Disable colored output',
     }),
     version: Flags.boolean({
