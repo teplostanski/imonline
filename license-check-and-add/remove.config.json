@@ -1,0 +1,19 @@
+{
+  "ignoreFile": "./license-check-and-add/IGNORED.txt",
+  "license": "./license-check-and-add/REMOVE_HEADER.txt",
+  "licenseFormats": {
+    "js|ts|jsx|tsx|css|scss": {
+      "prepend": "/*",
+      "append": " */",
+      "eachLine": {
+        "prepend": " * "
+      }
+    },
+    "dotfile": {
+      "eachLine": {
+        "prepend": "# "
+      }
+    }
+  },
+  "trailingWhitespace": "TRIM"
+}
