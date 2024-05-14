@@ -82,18 +82,18 @@ export const PingInfo: FC = () => {
     <Info error={error}>
       <Box flexDirection="column">
         <Box>
-          {pingInfo.icmpSeq ? (
-            <Text>ICMP Seq: {pingInfo.icmpSeq}, </Text>
+          {pingInfo.time ? (
+            <Text>Пинг: {getColor(pingInfo.time, noColor)}, </Text>
           ) : (
             <Text>
-              ICMP Seq: <Spinner />,{' '}
+              Пинг: <Spinner />,{' '}
             </Text>
           )}
-          {pingInfo.time ? (
-            <Text>Пинг: {getColor(pingInfo.time, noColor)}</Text>
+          {pingInfo.icmpSeq ? (
+            <Text>ICMP Seq: {pingInfo.icmpSeq}</Text>
           ) : (
             <Text>
-              Пинг: <Spinner />
+              ICMP Seq: <Spinner />,
             </Text>
           )}
         </Box>

@@ -28,7 +28,7 @@ import {CheckIperfInstalled, IperfResult, RunIperfResult} from './speed-test-inf
 import {formatDuration} from './speed-test-info.utils.js'
 
 export const SpeedTest = () => {
-  const [iperfInstalled, setIperfInstalled] = useState(false)
+  const [hasIperfInstalled, setHasIperfInstalled] = useState(false)
   const [speedTestResult, setSpeedTestResult] = useState<IperfResult | null>(null)
   const [speedTestJson, setSpeedTestJson] = useState<null | string>(null)
   const [isTesting, setIsTesting] = useState(false)
@@ -38,7 +38,7 @@ export const SpeedTest = () => {
   const [testDuration, setTestDuration] = useState('')
   const [rawDuration, setRawDuration] = useState<number>(0)
   const [showHints, setShowHints] = useState(false)
-  const [hasStart, setHasStart] = useState(false)
+  const [hasStarted, setHasStarted] = useState(false)
   const [log, setLog] = useState('')
   const [timer, setTimer] = useState<null | number>(null)
   const {noColor} = useStore()
@@ -53,7 +53,7 @@ export const SpeedTest = () => {
 
   useInput((input) => {
     if (input === 's' || input === 'ы') {
-      setHasStart(true)
+      setHasStarted(true)
     }
 
     if (input === '?') {
@@ -64,7 +64,7 @@ export const SpeedTest = () => {
       setDisplayUnits((prevUnits) => (prevUnits === 'Mbps' ? 'MBps' : 'Mbps'))
     }
 
-    if (input === 'r' || (input === 'к' && !isTesting && timer === null)) {
+    if (input === 'r' || (input === 'к' && !isTesting && timer === null && !hasIperfInstalled)) {
       setTimer(10)
     }
 
@@ -89,10 +89,10 @@ export const SpeedTest = () => {
   }, [timer])
 
   useEffect(() => {
-    if (hasStart) {
+    if (hasStarted) {
       const init = async () => {
         const result: CheckIperfInstalled = await checkIperfInstalled()
-        setIperfInstalled(result.installed)
+        setHasIperfInstalled(result.installed)
         if (result.installed) {
           runTest()
         } else {
@@ -102,7 +102,7 @@ export const SpeedTest = () => {
 
       init()
     }
-  }, [hasStart])
+  }, [hasStarted])
 
   async function runTest() {
     setError('')
@@ -159,6 +159,10 @@ export const SpeedTest = () => {
   const printHint = (text: string) => <Text>{colorText(color.Gray, text, noColor)}</Text>
 
   const postError = () => {
+    if (!hasIperfInstalled) {
+      return
+    }
+
     if (timer !== null) {
       return restartTest(timer)
     }
@@ -168,9 +172,9 @@ export const SpeedTest = () => {
 
   return (
     <Info error={error} postError={postError()}>
-      {hasStart ? (
+      {hasStarted ? (
         <Box flexDirection="column">
-          {iperfInstalled &&
+          {hasIperfInstalled &&
             (isTesting || !speedTestResult ? (
               <>
                 <Text>
