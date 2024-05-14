@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0-beta.2](https://github.com/teplostanski/nche/compare/v2.0.0-beta.1...v2.0.0-beta.2) (2024-05-14)
+
+### Features
+
+- add a short name -N for the --nocolor flag ([18ce9ba](https://github.com/teplostanski/nche/commit/18ce9ba32c98de025ff32330a311cb527f7595f0))
+
+### Bug Fixes
+
+- do not restart the speed test if iperf3 is not installed ([41757f4](https://github.com/teplostanski/nche/commit/41757f4c265a438fe1dab24327bb6cd22ce3898e))
+
 ## [2.0.0-beta.1](https://github.com/teplostanski/nche/compare/v1.1.2-alpha.0...v2.0.0-beta.1) (2024-05-11)
 
 ### ⚠ BREAKING CHANGES
