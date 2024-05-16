@@ -15,8 +15,11 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import {readFileSync} from 'node:fs'
+import {createRequire} from 'node:module'
 import {dirname, join} from 'node:path'
 import {fileURLToPath} from 'node:url'
+
+export const packageJson = createRequire(import.meta.url)('../../package.json')
 
 export function loadPackageJson() {
   const pathToPackageJson = join(dirname(fileURLToPath(import.meta.url)), '../..', 'package.json')

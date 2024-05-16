@@ -21,6 +21,7 @@ import {PingInfo} from '../../features/ping-info/ping-info.js'
 import {SpeedTest} from '../../features/speed-test-info/speed-test-info.js'
 import {useLogger} from '../../hooks/use-logger.js'
 import {useStore} from '../../store/config.js'
+import {UpdateNotifier} from '../update-notifier.js'
 import {Wrapper} from '../wrapper.js'
 import {AppProps} from './app.types.js'
 
@@ -49,10 +50,13 @@ export const App = ({isNoColor, log}: AppProps) => {
   }
 
   return (
-    <Wrapper>
-      <FetchIP />
-      <PingInfo />
-      <SpeedTest />
-    </Wrapper>
+    <>
+      <UpdateNotifier />
+      <Wrapper>
+        <FetchIP />
+        <PingInfo />
+        <SpeedTest />
+      </Wrapper>
+    </>
   )
 }

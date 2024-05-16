@@ -27,5 +27,22 @@ export abstract class Init extends Command {
 
   async init(): Promise<void> {
     await super.init()
+
+    //const notifier = updateNotifier({
+    //  pkg: packageJson,
+    //  updateCheckInterval: 0, // Проверять каждые 1 час для тестирования
+    //})
+
+    //notifier.notify({
+    //  defer: false,
+    //  isGlobal: true,
+    //})
+
+    //if (notifier.update) {
+    //  const message = `Update available ${notifier.update.current} → ${notifier.update.latest}\nRun npm i -g ${pkg.name} to update`;
+
+    //  // Печатаем сообщение без рамки
+    //  console.log(message);
+    //}
   }
 }
