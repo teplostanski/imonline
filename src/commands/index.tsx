@@ -30,7 +30,7 @@ export default class Main extends Init {
     }),
     log: Flags.string({
       hidden: true,
-      options: ['flags', 'speed-test:log', 'speed-test:errors', 'speed-test:output', 'test:logs', 'all', 'pid'],
+      options: ['flags', 'speed-test:log', 'speed-test:errors', 'speed-test:output', 'test:logs', 'all'],
     }),
     nocolor: Flags.boolean({
       char: 'N',
