@@ -14,48 +14,40 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import axios from 'axios'
-import {Text} from 'ink'
-import Spinner from 'ink-spinner'
+import {Box, Text} from 'ink'
 import React, {useEffect, useState} from 'react'
+import updateNotifier from 'update-notifier'
 
-import Info from '../components/info.js'
 import {useStore} from '../store/config.js'
 import {colorText} from '../utils/color-text.js'
 import {color} from '../utils/get-color.js'
+import {packageJson} from '../utils/load-package-json.js'
 
-export const FetchIP = () => {
+export const UpdateNotifier = () => {
   const {noColor} = useStore()
-  const [externalIP, setExternalIP] = useState('')
-  const [isLoading, setIsLoading] = useState(true)
-  const [error, setError] = useState('')
+  const [version, setVersion] = useState({current: '', latest: ''})
 
   useEffect(() => {
-    const fetchIP = async () => {
-      setIsLoading(true)
-      try {
-        const response = await axios.get('https://api.ipify.org?format=json')
-        setExternalIP(response.data.ip)
-        setError('')
-      } catch (error) {
-        setError(`Не удалось получить внешний IP-адрес\n${(error as Error).message}`)
-      } finally {
-        setIsLoading(false)
-      }
+    const notifier = updateNotifier({
+      pkg: packageJson,
+      updateCheckInterval: 0,
+    })
+    if (notifier.update) {
+      setVersion({current: notifier.update.current, latest: notifier.update.latest})
     }
-
-    fetchIP()
   }, [])
 
   return (
-    <Info error={error}>
-      {isLoading ? (
-        <Text>
-          IP: <Spinner />
-        </Text>
-      ) : (
-        <Text>IP: {colorText(color.Cyan, externalIP, noColor)}</Text>
+    <>
+      {version.current && version.latest && (
+        <Box flexDirection="column">
+          <Text>
+            Update available {colorText(color.Gray, version.current, noColor)} →{' '}
+            {colorText(color.Green, version.latest, noColor)}
+          </Text>
+          <Text>Run {colorText(color.Cyan, `npm i -g ${packageJson.name}@${version.latest}`, noColor)} to update</Text>
+        </Box>
       )}
-    </Info>
+    </>
   )
 }

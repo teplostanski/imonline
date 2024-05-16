@@ -14,7 +14,7 @@
     "skipLibCheck": true,
     "resolveJsonModule": true
   },
-  "include": ["global.d.ts", "./src/**/*"],
+  "include": ["global.d.ts", "./src/**/*", "package.json"],
   "ts-node": {
     "esm": true
   }

@@ -1,6 +1,6 @@
 {
   "name": "nche",
-  "version": "2.0.0-beta.1",
+  "version": "2.0.0-beta.3",
   "description": "Network Checker is a user-friendly CLI (TUI) application that offers real-time IP discovery, ping statistics, and speed testing to optimize your network performance.",
   "scripts": {
     "build": "shx rm -rf dist && tsc -b",
@@ -11,6 +11,8 @@
     "prepare": "husky",
     "test": "mocha --forbid-only \"test/**/*.test.ts\"",
     "posttest": "npm run lint",
+    "license-header:add": "license-check-and-add add -f ./license-check-and-add/add.config.json",
+    "license-header:remove": "license-check-and-add remove -f ./license-check-and-add/remove.config.json",
     "release": "standard-version",
     "release:major": "npm run release -- --release-as major",
     "release:minor": "npm run release -- --release-as minor",
@@ -95,6 +97,7 @@
     "ink-spinner": "^5.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "update-notifier": "^7.0.0",
     "zustand": "^4.5.2"
   },
   "devDependencies": {
@@ -104,6 +107,7 @@
     "@types/mocha": "^10",
     "@types/node": "^20.12.7",
     "@types/react": "^18.2.77",
+    "@types/update-notifier": "^6.0.8",
     "@typescript-eslint/eslint-plugin": "^7.6.0",
     "@typescript-eslint/parser": "^7.6.0",
     "chai": "^4",
@@ -112,6 +116,7 @@
     "eslint-config-oclif-typescript": "^3",
     "eslint-config-prettier": "^9.1.0",
     "husky": "^9.0.11",
+    "license-check-and-add": "^4.0.5",
     "mocha": "^10",
     "oclif": "^4.7.3",
     "prettier": "^3.2.5",

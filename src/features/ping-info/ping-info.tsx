@@ -1,3 +1,19 @@
+/*
+ * Copyright (C) 2024 Igor Teplostanski <teplostanski@yandex.ru>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
 import {Box, Text} from 'ink'
 import Spinner from 'ink-spinner'
 import {spawn} from 'node:child_process'
@@ -66,18 +82,18 @@ export const PingInfo: FC = () => {
     <Info error={error}>
       <Box flexDirection="column">
         <Box>
-          {pingInfo.icmpSeq ? (
-            <Text>ICMP Seq: {pingInfo.icmpSeq}, </Text>
+          {pingInfo.time ? (
+            <Text>Пинг: {getColor(pingInfo.time, noColor)}, </Text>
           ) : (
             <Text>
-              ICMP Seq: <Spinner />,{' '}
+              Пинг: <Spinner />,{' '}
             </Text>
           )}
-          {pingInfo.time ? (
-            <Text>Пинг: {getColor(pingInfo.time, noColor)}</Text>
+          {pingInfo.icmpSeq ? (
+            <Text>ICMP Seq: {pingInfo.icmpSeq}</Text>
           ) : (
             <Text>
-              Пинг: <Spinner />
+              ICMP Seq: <Spinner />,
             </Text>
           )}
         </Box>
