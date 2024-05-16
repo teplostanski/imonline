@@ -86,8 +86,12 @@ const Info: FC<InfoProps> = ({
         {error ? (
           <Text>
             <Text>{colorText(color.Error, `ОШИБКА: ${error}`, noColor)}</Text>
-            <Newline />
-            {postError}
+            {postError && (
+              <>
+                <Newline />
+                {postError}
+              </>
+            )}
           </Text>
         ) : (
           <>{children}</>

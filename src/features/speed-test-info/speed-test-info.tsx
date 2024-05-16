@@ -64,7 +64,7 @@ export const SpeedTest = () => {
       setDisplayUnits((prevUnits) => (prevUnits === 'Mbps' ? 'MBps' : 'Mbps'))
     }
 
-    if (input === 'r' || (input === 'к' && !isTesting && timer === null && !hasIperfInstalled)) {
+    if ((input === 'r' || input === 'к') && !isTesting && timer === null && hasIperfInstalled) {
       setTimer(10)
     }
 

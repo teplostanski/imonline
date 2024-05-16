@@ -23,7 +23,10 @@ export const checkIperfInstalled = (): Promise<CheckIperfInstalled> =>
     const checkIperf = spawn('iperf3', ['--version'])
 
     checkIperf.on('error', () => {
-      resolve({installed: false, message: 'iperf3 не установлен. Пожалуйста, установите iperf3 для продолжения теста.'})
+      resolve({
+        installed: false,
+        message: 'iperf3 не установлен. Пожалуйста, установите iperf3 и перезапустите приложение.',
+      })
     })
 
     checkIperf.on('exit', (code) => {
