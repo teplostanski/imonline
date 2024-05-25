@@ -21,7 +21,7 @@
   
   <br>
   
-  <img src="https://raw.githubusercontent.com/teplostanski/imonline/main/preview_app.gif" alt="preview" width="720"/>
+  <img src="https://raw.githubusercontent.com/teplostanski/imonline/main/preview_app.gif" alt="preview" width="480"/>
 </div>
 
 <br>
