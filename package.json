@@ -1,7 +1,7 @@
 {
   "name": "imonline",
-  "version": "3.0.0",
-  "description": "Network Checker is a user-friendly CLI (TUI) application that offers real-time IP discovery, ping statistics, and speed testing to optimize your network performance.",
+  "version": "3.0.1",
+  "description": "A CLI app that answers the question 'I`m Online?' with a user-friendly UI, and also displays IP, ping, and internet speed.",
   "scripts": {
     "build": "shx rm -rf dist && tsc -b",
     "lint": "eslint . --ext .ts,.tsx --fix",

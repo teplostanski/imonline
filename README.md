@@ -1,5 +1,5 @@
 <div align='center'>
-  <h1>imonline</h1>
+  <h1>I`m Online?</h1>
 
 [<img alt="NPM Version" src="https://img.shields.io/npm/v/imonline?style=for-the-badge&color=%23907ad6">](https://www.npmjs.com/package/imonline)
 [<img alt="NPM Downloads" src="https://img.shields.io/npm/d18m/imonline?style=for-the-badge&color=%23a8e8d6">](https://www.npmjs.com/package/imonline)
@@ -17,7 +17,7 @@
 
   <br>
 
-  <h3> Network Checker is a user-friendly CLI (TUI) application that offers real-time IP discovery, ping statistics, and speed testing to optimize your network performance.</h3>
+  <h3>A CLI app that answers the question <code>'I`m Online?'</code> with a user-friendly UI, and also displays <code>IP</code>, <code>ping</code>, and <code>internet speed</code>.</h3>
   
   <br>
   
