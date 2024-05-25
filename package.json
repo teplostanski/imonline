@@ -1,6 +1,6 @@
 {
-  "name": "nche",
-  "version": "2.0.0",
+  "name": "imonline",
+  "version": "3.0.0",
   "description": "Network Checker is a user-friendly CLI (TUI) application that offers real-time IP discovery, ping statistics, and speed testing to optimize your network performance.",
   "scripts": {
     "build": "shx rm -rf dist && tsc -b",
@@ -45,11 +45,11 @@
     "tech-tools",
     "ink"
   ],
-  "homepage": "https://github.com/teplostanski/nche#readme",
-  "bugs": "https://github.com/teplostanski/nche/issues",
+  "homepage": "https://github.com/teplostanski/imonline#readme",
+  "bugs": "https://github.com/teplostanski/imonline/issues",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/teplostanski/nche.git"
+    "url": "git+https://github.com/teplostanski/imonline.git"
   },
   "license": "GPL-3.0-only",
   "author": {
@@ -65,7 +65,7 @@
   "exports": "./lib/index.js",
   "types": "dist/index.d.ts",
   "bin": {
-    "nche": "bin/run.js"
+    "imonline": "bin/run.js"
   },
   "files": [
     "/bin",
@@ -74,12 +74,12 @@
     "/LICENSE.md"
   ],
   "oclif": {
-    "bin": "nche",
+    "bin": "imonline",
     "commands": {
       "strategy": "single",
       "target": "./dist/commands/index.js"
     },
-    "dirname": "nche",
+    "dirname": "imonline",
     "plugins": [
       "@oclif/plugin-help",
       "@oclif/plugin-plugins"
