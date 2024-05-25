@@ -1,6 +1,6 @@
 {
   "name": "imonline",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "A CLI app that answers the question 'I`m Online?' with a user-friendly UI, and also displays IP, ping, and internet speed.",
   "scripts": {
     "build": "shx rm -rf dist && tsc -b",
