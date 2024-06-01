@@ -40,7 +40,12 @@ Or run without installation
 $ npx imonline
 ```
 
-<h2 align="center">⚠️⚠️⚠️ Warning: Install <code>iperf3</code> on your OS for the speed test to work correctly 🚨🚨🚨</h2>
+---
+
+> [!IMPORTANT]
+> Install <code>iperf3</code> on your OS for the speed test to work correctly
+
+---
 
 ## Usage
 
@@ -53,7 +58,7 @@ $ imonline
 ```bash
   -c, --copyright  Show copyright
   -v, --version    Print version
-      --nocolor    Disable colored output
+  -N, --nocolor    Disable colored output
 ```
 
 <br>
