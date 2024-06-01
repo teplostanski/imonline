@@ -14,15 +14,34 @@
 [<img alt="GitHub package.json prod dependency version" src="https://img.shields.io/github/package-json/dependency-version/teplostanski/imonline/%40oclif%2Fcore?style=flat-square&color=%23ffeb91">](https://github.com/teplostanski/imonline/blob/main/package.json)
 [<img alt="GitHub package.json prod dependency version" src="https://img.shields.io/github/package-json/dependency-version/teplostanski/imonline/ink?style=flat-square&color=%23ff91c7">](https://github.com/teplostanski/imonline/blob/main/package.json)
 [<img alt="GitHub package.json prod dependency version" src="https://img.shields.io/github/package-json/dependency-version/teplostanski/imonline/react?style=flat-square&color=%23ff91c7">](https://github.com/teplostanski/imonline/blob/main/package.json)
+</div>
 
   <br>
 
-  <h3>A CLI app that answers the question <code>'I`m Online?'</code> with a user-friendly UI, and also displays <code>IP</code>, <code>ping</code>, and <code>internet speed</code>.</h3>
+> [!NOTE]
+> A CLI app that answers the question <code>'I`m Online?'</code> with a user-friendly UI, and also displays <code>IP</code>, <code>ping</code>, and <code>internet speed</code>
+
+<!--
+> [!NOTE]
+> Useful information that users should know, even when skimming content.
+
+> [!TIP]
+> Helpful advice for doing things better or more easily.
+
+> [!IMPORTANT]
+> Key information users need to know to achieve their goal.
+
+> [!WARNING]
+> Urgent info that needs immediate user attention to avoid problems.
+
+> [!CAUTION]
+> Advises about risks or negative outcomes of certain actions.
+-->
   
   <br>
   
   <img src="https://raw.githubusercontent.com/teplostanski/imonline/main/preview_app.gif" alt="preview" width="420"/>
-</div>
+
 
 <br>
 
