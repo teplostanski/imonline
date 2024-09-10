@@ -64,7 +64,7 @@ $ npx imonline
 ## ⚙️ Usege
 
 ```bash
-$ imonline
+$ imonline  [-c] [-N] [-v]
 ```
 
 ## 🚩 Flags
