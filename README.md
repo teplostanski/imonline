@@ -16,8 +16,6 @@
 [<img alt="GitHub package.json prod dependency version" src="https://img.shields.io/github/package-json/dependency-version/teplostanski/imonline/react?style=flat-square&color=%23ff91c7">](https://github.com/teplostanski/imonline/blob/main/package.json)
 </div>
 
-  <br>
-
 > [!NOTE]
 > A CLI app that answers the question <code>'I`m Online?'</code> with a user-friendly UI, and also displays <code>IP</code>, <code>ping</code>, and <code>internet speed</code>
 
@@ -42,10 +40,7 @@
   
   <img src="https://raw.githubusercontent.com/teplostanski/imonline/main/preview_app.gif" alt="preview" width="420"/>
 
-
-<br>
-
-## Install
+## 📦 Installation
 
 [npmjs.com](https://www.npmjs.com/package/imonline)
 
@@ -66,13 +61,13 @@ $ npx imonline
 
 ---
 
-## Usage
+## ⚙️ Usege
 
 ```bash
 $ imonline
 ```
 
-## Flags
+## 🚩 Flags
 
 ```bash
   -c, --copyright  Show copyright
@@ -80,15 +75,15 @@ $ imonline
   -N, --nocolor    Disable colored output
 ```
 
-<br>
+## 🤝 Contributing
 
-<!--<h2 align="center">
-  <img src="./heart.png" alt="heart" width="18"/>
-  <strong>Fund</strong>
-  <a href="https://donate.teplostanski.dev"> this project</a>
-</h2>-->
+Want to contribute? Awesome! To show your support is to star the project, or to raise [issues on GitHub](https://github.com/teplostanski/imonline/issues).
 
-<h2>License</h2>
+Before you contribute to the development of the project, read the [rules](https://github.com/teplostanski/imonline/blob/main/CONTRIBUTING.md).
+
+Thanks again for your support, it is much appreciated! 🙏
+
+<h2> © License</h2>
 <a href="https://github.com/teplostanski/imonline/blob/main/LICENSE.md">GNU GPL v3.0</a> © 2024 <a href="https://github.com/teplostanski">teplostanski</a>
 
 <h2>❤ Fund this project</h2>
