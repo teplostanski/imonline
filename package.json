@@ -55,11 +55,11 @@
   "author": {
     "name": "Igor Teplostanski",
     "email": "teplostanski@yandex.ru",
-    "url": "https://teplostanski.dev"
+    "url": "https://teplostan.ski"
   },
   "funding": {
     "type": "crypto",
-    "url": "https://donate.teplostanski.dev"
+    "url": "https://donate.teplostan.ski"
   },
   "type": "module",
   "exports": "./lib/index.js",
